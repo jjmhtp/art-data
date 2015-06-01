@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-## This script does not work so far :-/
-## This version 2 will be written almost completely from scratch by replacing
+## This version will be written completely new by replacing
 ## the linear functioning of the first version by functions!
+
 
 import urllib
 import json
-import ast
+import csv
 
-## Get artworks yet in Wikidata
+
+## Function to perform queries with Wikidata Query
 
 def wd_query(params):
     """perform a query with Wikidata Query with a given query string"""
@@ -19,17 +20,85 @@ def wd_query(params):
     g = json.load(f)
     return g
 
-#TODO: arrange entities with more than one inventory number: complex JSONs
-#      should be created
+
+## Get and convert BStGS artworks in Wikidata
+
 paramsdict = {'q': '(CLAIM[195:812285] OR CLAIM[195:\
     (CLAIM[361:812285])] OR CLAIM[276:812285] OR CLAIM[276:(CLAIM[361:\
     812285])]) AND CLAIM[217]', 'props': '217'}
 bstgsArtWD =  wd_query(paramsdict)
+items = bstgsArtWD[u'items']
+for itempos in range(len(items)):
+    items[itempos] = {u'wdqid': items[itempos], u'inv': []}
+    for artwork in bstgsArtWD[u'props'][u'217']:
+        if items[itempos][u'wdqid'] == artwork[0]:
+            items[itempos][u'inv'].append(artwork[2])
 
 
-bstgsArtWDjson = bstgsArtWD[u'items']
-print bstgsArtWDjson
+## Read and convert data from own observation in own.json
 
+ownfile = open('data/own.json', 'r')
+#ownfile = ownfile.read()
+ownobj = json.load(ownfile)
+ownconverted = []
+for room in ownobj[u'rooms'].keys():
+    for artworkgroup in ownobj[u'rooms'][room]:
+        ownconverted.append({u'inv': artworkgroup, u'location': {u'name': \
+                            room, u'date': ownobj[u'date'], u'source': u'own'\
+                            }})
+
+
+## Read data from the BStGS inventory list csv file
+
+reader = csv.reader(open('data/bstgs_inventory.csv'))
+inv_list = list(row for row in reader)
+
+
+## Function to unite collected data
+
+def unite(inv):
+    """unite the data of Wikidata, the BStGS inventory list and own \
+    obervation for an artworkgroup""" # TODO: for now an artworkgroup
+    united_artwork_data = {u'inv': inv}
+    for artwork in ownconverted: # own observation
+        if inv == artwork[u'inv'] or inv in artwork[u'inv']: # TODO: messy \
+            # code because of a messy data model at the moment
+            united_artwork_data = artwork
+    for item in items: # Wikidata
+        if inv == item[u'inv'][0]:
+            united_artwork_data[u'wdqid'] = item[u'wdqid']
+    for artwork in inv_list: # inventory list
+        if inv == artwork[0]:
+            united_artwork_data[u'artist'] = artwork[1]
+            united_artwork_data[u'title'] = artwork[2]
+    return json.dumps(united_artwork_data, indent=4)
+#print unite(u'537'), unite(u'688'), unite(u'35'), unite(u'698'), unite(u'38')
+
+
+## Collect data for the artworks from own.json
+# TODO: is this necessary?
+unitedlist = []
+for artwork in ownconverted:
+  try:
+    unitedlist.append(unite(artwork[u'inv']))
+  except:
+    pass
+
+# Convert the collection to QuickStatements format
+
+def artworkjson2qs(artworkjson):
+    outputstr = ''
+    if artworkjson[u'wdqid'] != None:
+        outputstr.append(artworkjson[u'wdqid'])
+    else:
+        outputstr.append(u'CREATE')
+    return outputstr
+
+
+print json.dumps(ownconverted, indent=4)
+
+print unitedlist
+print artworkjson2qs(unitedlist[0])
 
 
 #h = open('mkTable4qStatementsOutput.txt', 'w')
