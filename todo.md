@@ -3,4 +3,6 @@
 - [ ] pdf-conversion
     - [ ] handle the weird comma in the text for Bruyn
     - [ ] rewrite to use python
-
+- [ ] get input data from Wikimedia Commons:
+    - [ ] add inv. nos. to Commons file descriptions or rather collect it in a csv file
+        - [ ] [https://commons.wikimedia.org/wiki/Category:Sculptures_in_the_Neue_Pinakothek](c:Category:Sculptures in the Neue Pinakothek) should be a good begin
