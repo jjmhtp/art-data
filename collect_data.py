@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -6,7 +6,7 @@
 ## the linear functioning of the first version by functions!
 
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import json
 import csv
 
@@ -15,8 +15,8 @@ import csv
 
 def wd_query(params):
     """perform a query with Wikidata Query with a given query string"""
-    paramsstring = urllib.urlencode(params)
-    f = urllib.urlopen('http://wdq.wmflabs.org/api?%s' % paramsstring)
+    paramsstring = urllib.parse.urlencode(params)
+    f = urllib.request.urlopen('http://wdq.wmflabs.org/api?%s' % paramsstring)
     g = json.load(f)
     return g
 
@@ -27,12 +27,12 @@ paramsdict = {'q': '(CLAIM[195:812285] OR CLAIM[195:\
     (CLAIM[361:812285])] OR CLAIM[276:812285] OR CLAIM[276:(CLAIM[361:\
     812285])]) AND CLAIM[217]', 'props': '217'}
 bstgsArtWD =  wd_query(paramsdict)
-items = bstgsArtWD[u'items']
+items = bstgsArtWD['items']
 for itempos in range(len(items)):
-    items[itempos] = {u'wdqid': items[itempos], u'inv': []}
-    for artwork in bstgsArtWD[u'props'][u'217']:
-        if items[itempos][u'wdqid'] == artwork[0]:
-            items[itempos][u'inv'].append(artwork[2])
+    items[itempos] = {'wdqid': items[itempos], 'inv': []}
+    for artwork in bstgsArtWD['props']['217']:
+        if items[itempos]['wdqid'] == artwork[0]:
+            items[itempos]['inv'].append(artwork[2])
 
 
 ## Read and convert data from own observation in own.json
@@ -41,10 +41,10 @@ ownfile = open('data/own.json', 'r')
 #ownfile = ownfile.read()
 ownobj = json.load(ownfile)
 ownconverted = []
-for room in ownobj[u'rooms'].keys():
-    for artworkgroup in ownobj[u'rooms'][room]:
-        ownconverted.append({u'inv': artworkgroup, u'location': {u'name': \
-                            room, u'date': ownobj[u'date'], u'source': u'own'\
+for room in list(ownobj['rooms'].keys()):
+    for artworkgroup in ownobj['rooms'][room]:
+        ownconverted.append({'inv': artworkgroup, 'location': {'name':
+                            room, 'date': ownobj['date'], 'source': 'own'
                             }})
 
 
@@ -59,18 +59,18 @@ inv_list = list(row for row in reader)
 def unite(inv):
     """unite the data of Wikidata, the BStGS inventory list and own \
     obervation for an artworkgroup""" # TODO: for now an artworkgroup
-    united_artwork_data = {u'inv': inv}
+    united_artwork_data = {'inv': inv}
     for artwork in ownconverted: # own observation
-        if inv == artwork[u'inv'] or inv in artwork[u'inv']: # TODO: messy \
+        if inv == artwork['inv'] or inv in artwork['inv']: # TODO: messy
             # code because of a messy data model at the moment
             united_artwork_data = artwork
     for item in items: # Wikidata
-        if inv == item[u'inv'][0]:
-            united_artwork_data[u'wdqid'] = item[u'wdqid']
+        if inv == item['inv'][0]:
+            united_artwork_data['wdqid'] = item['wdqid']
     for artwork in inv_list: # inventory list
         if inv == artwork[0]:
-            united_artwork_data[u'artist'] = artwork[1]
-            united_artwork_data[u'title'] = artwork[2]
+            united_artwork_data['artist'] = artwork[1]
+            united_artwork_data['title'] = artwork[2]
     return json.dumps(united_artwork_data, indent=4)
 #print unite(u'537'), unite(u'688'), unite(u'35'), unite(u'698'), unite(u'38')
 
@@ -80,7 +80,7 @@ def unite(inv):
 unitedlist = []
 for artwork in ownconverted:
   try:
-    unitedlist.append(unite(artwork[u'inv']))
+    unitedlist.append(unite(artwork['inv']))
   except:
     pass
 
@@ -88,17 +88,17 @@ for artwork in ownconverted:
 
 def artworkjson2qs(artworkjson):
     outputstr = ''
-    if artworkjson[u'wdqid'] != None:
-        outputstr.append(artworkjson[u'wdqid'])
+    if artworkjson['wdqid'] != None:
+        outputstr.append(artworkjson['wdqid'])
     else:
-        outputstr.append(u'CREATE')
+        outputstr.append('CREATE')
     return outputstr
 
 
-print json.dumps(ownconverted, indent=4)
+print(json.dumps(ownconverted, indent=4))
 
-print unitedlist
-print artworkjson2qs(unitedlist[0])
+print(unitedlist)
+print(artworkjson2qs(unitedlist[0]))
 
 
 #h = open('mkTable4qStatementsOutput.txt', 'w')

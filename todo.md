@@ -1,8 +1,19 @@
 - [ ] collect_data.py
     - [ ] use python3
-- [ ] pdf-conversion
-    - [ ] handle the weird comma in the text for Bruyn
+- convert_bstgs_inv.py
+    - [ ] parse "d.Ä." etc correctly
+    - [ ] parse "und" in artist fiels correctly
+    - [ ] write function docstrings
+    - [ ] parse artwork groups in the title fields: [group[, partition]: ]part title (sometimes left out)
+- pdf-conversion
+    - [ ] handle the weird comma in the text for Bruyn and a problem with Inv. No. 6408
     - [ ] rewrite to use python
+    - [ ] the conversion from inv3.txt to inv4.csv dobles some quotes, e.g. "PERPAROLE" -> ""PERPAROLE""
 - [ ] get input data from Wikimedia Commons:
     - [ ] add inv. nos. to Commons file descriptions or rather collect it in a csv file
         - [ ] [https://commons.wikimedia.org/wiki/Category:Sculptures_in_the_Neue_Pinakothek](c:Category:Sculptures in the Neue Pinakothek) should be a good begin
+- for QuickStatements composition:
+    - P1877: after a work by
+    - P1773: attributed to
+    - Q4233718: anonymous
+
