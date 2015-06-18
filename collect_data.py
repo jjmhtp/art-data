@@ -6,47 +6,16 @@
 ## the linear functioning of the first version by functions!
 
 
-import urllib.request, urllib.parse, urllib.error
+#import urllib.request, urllib.parse, urllib.error
 import json
 import csv
+import sys
+
+inputinvno = sys.argv[1]
 
 
-## Function to perform queries with Wikidata Query
-
-def wd_query(params):
-    """perform a query with Wikidata Query with a given query string"""
-    paramsstring = urllib.parse.urlencode(params)
-    f = urllib.request.urlopen('http://wdq.wmflabs.org/api?%s' % paramsstring)
-    f = f.read().decode('utf-8')
-    g = json.loads(f)
-    return g
-
-
-## Get and convert BStGS artworks in Wikidata
-
-paramsdict = {'q': '(CLAIM[195:812285] OR CLAIM[195:\
-    (CLAIM[361:812285])] OR CLAIM[276:812285] OR CLAIM[276:(CLAIM[361:\
-    812285])]) AND CLAIM[217]', 'props': '217'}
-bstgsArtWD =  wd_query(paramsdict)
-items = bstgsArtWD['items']
-for itempos in range(len(items)):
-    items[itempos] = {'wdqid': items[itempos], 'inv': []}
-    for artwork in bstgsArtWD['props']['217']:
-        if items[itempos]['wdqid'] == artwork[0]:
-            items[itempos]['inv'].append(artwork[2])
-
-
-## Read and convert data from own observation in own.json
-
-ownfile = open('data/own.json', 'r')
-#ownfile = ownfile.read()
-ownobj = json.load(ownfile)
-ownconverted = []
-for room in list(ownobj['rooms'].keys()):
-    for artworkgroup in ownobj['rooms'][room]:
-        ownconverted.append({'inv': artworkgroup, 'location': {'name':
-                            room, 'date': ownobj['date'], 'source': 'own'
-                            }})
+wdinvnosfile = open('data/wd_invnos.json', 'r')
+items = json.load(wdinvnosfile)
 
 
 ## Read data from the BStGS inventory list csv file
@@ -55,104 +24,49 @@ reader = csv.reader(open('data/bstgs_inventory.csv'))
 inv_list = list(row for row in reader)
 
 
+
+
+
+
 ## Function to unite collected data
 
 def unite(inv):
     """unite the data of Wikidata, the BStGS inventory list and own \
     obervation for an artworkgroup""" # TODO: for now an artworkgroup
     united_artwork_data = {'inv': inv}
-    for artwork in ownconverted: # own observation
-        if inv == artwork['inv'] or inv in artwork['inv']: # TODO: messy
-            # code because of a messy data model at the moment
-            united_artwork_data = artwork
     for item in items: # Wikidata
-        if inv == item['inv'][0]:
+        if inv in item['inv']:
             united_artwork_data['wdqid'] = item['wdqid']
     for artwork in inv_list: # inventory list
         if inv == artwork[0]:
             united_artwork_data['artist'] = artwork[1]
             united_artwork_data['title'] = artwork[2]
-    return json.dumps(united_artwork_data, indent=4)
-#print unite(u'537'), unite(u'688'), unite(u'35'), unite(u'698'), unite(u'38')
+    return united_artwork_data
 
-
-## Collect data for the artworks from own.json
-# TODO: is this necessary?
-unitedlist = []
-for artwork in ownconverted:
-  try:
-    unitedlist.append(unite(artwork['inv']))
-  except:
-    pass
 
 # Convert the collection to QuickStatements format
 
 def artworkjson2qs(artworkjson):
     outputstr = ''
-    if artworkjson['wdqid'] != None:
-        outputstr.append(artworkjson['wdqid'])
+    if 'wdqid' in artworkjson:
+        ref = ('Q' + str(artworkjson['wdqid']))
     else:
-        outputstr.append('CREATE')
+        outputstr += 'CREATE\n'
+        ref = 'LAST'
+    outputstr += (ref + '	Lde	"' + artworkjson['title'] + '"\n')
+    outputstr += (ref + '	P170	[' + artworkjson['artist'] + ']\n')
+    outputstr += (ref + '	P217	"' + artworkjson['inv'] + '"	P195	Q812285\n')
     return outputstr
 
 
-print(json.dumps(ownconverted, indent=4))
-
-print(unitedlist)
-print(artworkjson2qs(unitedlist[0]))
+#print(json.dumps(ownconverted, indent=4))
 
 
-#h = open('mkTable4qStatementsOutput.txt', 'w')
-#h.write(str(g))
-#h.close()
-#
-#i = open('mkTable4qStatementsOutput.txt', 'r')
-#j = i.read()
-#print 'file:', j
-#i.close()
+#print unite(u'537'), unite(u'688'), unite(u'35'), unite(u'698'), unite(u'38')
 
+print(json.dumps(unite(inputinvno), indent=4))
+print(artworkjson2qs(unite(inputinvno)))
 
-
-
-#k = open('mkTable4qStatementsOutput.txt', 'r')
-#l = k.read()
-#k.close()
-#m = ast.literal_eval(l)
-
-
-## Get artworks to extend
-
-#inputart1 = open('rooms.json', 'r')
-#inputart2 = json.load(inputart1)
-#inputart1.close()
-#
-#for room in inputart2[u'rooms']:
-#    for item in inputart2[u'rooms'][room]:
-#        if type(item) != list:
-#            inputart2[u'rooms'][room][inputart2[u'rooms'][room].index(item)] = [item]
-##print inputart2
-#
-#artworkslist = []
-#for room in inputart2[u'rooms']:
-#    for item in inputart2[u'rooms'][room]:
-#        artworkslist.append({'group': item, 'roomstatement': {'room': room, 'date': inputart2[u'date']}})
-
-
-## Enrich artworks to extend
-
-### Enrich artworks to extend from inventory list
-
-#import csv
-#reader = csv.reader(open('inv4.csv'))
-#inv_list = list(row for row in reader)
-#
-#for row in inv_list:
-#    for group in artworkslist:
-#        for invitem in artworkslist[artworkslist.index(group)]['group']:
-#            if row[0] == invitem:
-#                artworkslist[artworkslist.index(group)]['group'][artworkslist[artworkslist.index(group)]['group'].index(invitem)] = {'Inv. No.': invitem, 'artist': row[1], 'title': row[2]} 
-#
-#print artworkslist
 
 #### Get possible Wikidata matches for the artist TODO: not yet adapted
 
