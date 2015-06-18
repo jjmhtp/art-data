@@ -17,7 +17,8 @@ def wd_query(params):
     """perform a query with Wikidata Query with a given query string"""
     paramsstring = urllib.parse.urlencode(params)
     f = urllib.request.urlopen('http://wdq.wmflabs.org/api?%s' % paramsstring)
-    g = json.load(f)
+    f = f.read().decode('utf-8')
+    g = json.loads(f)
     return g
 
 
