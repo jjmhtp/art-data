@@ -43,7 +43,8 @@ def creator_parse(creator_string):
             )):
         pass
     else:
-        string_parts = creator_string.split(None, 1) # TODO: "d.Ä." issue
+        string_parts = creator_string.split(None, 1)
+        # TODO: issues with 'd.Ä.' and brackets
         string_parts.reverse()
         creator_string = ' '.join(part for part in string_parts)
         # transfer the first word if there are more to the end of the string
@@ -51,18 +52,18 @@ def creator_parse(creator_string):
     # indication to the person named
     creator_dict = {'value': creator_string}
     if qualifier: # overwrite eventually
-        creator_dict['value'] = 'anonymous'
+        creator_dict['value'] = 'Unbekannt'
         creator_dict['qualifiers'] = {qualifier: creator_string}
     return creator_dict
 
 def convert_row(row):
-    dict = {}
+    dictionary = {}
     # Compose dictionaries for the rows from the fields of the csv file
     # (The fields are stripped because some are not yet unfortunately.)
-    dict['inv'] = row[0].strip()
-    dict['creator'] = creator_parse(row[1].strip())
-    dict['title'] = row[2].strip()
-    return dict
+    dictionary['invno'] = row[0].strip()
+    dictionary['creator'] = creator_parse(row[1].strip())
+    dictionary['title'] = row[2].strip()
+    return dictionary
 
 def iterate_bstgs_inv():
     reader = csv.reader(open('data/bstgs_inventory.csv'))
@@ -73,7 +74,7 @@ def iterate_bstgs_inv():
     return inv_converted
 
 result = json.dumps(iterate_bstgs_inv(), ensure_ascii=False, indent=4)
-with open('data/bstgs_inventory.json', 'w') as output:
+with open('data/bstgs_inventory.json', 'w+') as output:
     output.write(result)
 
 #print(json.dumps(iterate_bstgs_inv()[0:10], ensure_ascii=False, indent=4))

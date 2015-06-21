@@ -23,14 +23,14 @@ paramsdict = {'q': '(CLAIM[195:812285] OR CLAIM[195:\
 bstgsArtWD =  wd_query(paramsdict)
 items = bstgsArtWD['items']
 for itempos in range(len(items)):
-    items[itempos] = {'wdqid': items[itempos], 'inv': []}
+    items[itempos] = {'wdqid': items[itempos], 'invno': []}
     for artwork in bstgsArtWD['props']['217']:
         if items[itempos]['wdqid'] == artwork[0]:
-            items[itempos]['inv'].append(artwork[2])
+            items[itempos]['invno'].append(artwork[2])
 
 
 result = json.dumps(items, ensure_ascii=False, indent=4)
-with open('data/wd_invnos.json', 'w') as output:
+with open('data/wd_invnos.json', 'w+') as output:
     output.write(result)
 
 
