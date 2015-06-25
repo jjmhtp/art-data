@@ -5,27 +5,26 @@ import json
 import urllib.request, urllib.parse, urllib.error
 import argparse
 
-
 ## Read data from the BStGS inventory list and the Wikidata list of
 ## inventory numbers json files
 items = json.load(open('data/wd_invnos.json', 'r'))
 bstgsinventory = json.load(open('data/bstgs_inventory.json', 'r'))
 
-
 ## Function to unite collected data
 def unite(inputdict):
     """unite the data of Wikidata, the BStGS inventory list and given \
     data for an artworkgroup""" # TODO: for now an artworkgroup(?)
-    united_artwork_data = inputdict
-    for item in items: # Wikidata
+    uniteddict = inputdict
+    # Wikidata
+    for item in items:
         if inputdict['invno'] in item['invno']: # TODO: matches also groups atm
-            united_artwork_data['wdqid'] = ('Q' + str(item['wdqid']))
-    for artwork in bstgsinventory: # inventory list
+            uniteddict['wdqid'] = ('Q' + str(item['wdqid']))
+    # BStGS inventory list
+    for artwork in bstgsinventory:
         if inputdict['invno'] == artwork['invno']:
-            united_artwork_data['creator'] = artwork['creator']
-            united_artwork_data['title'] = artwork['title']
-    return united_artwork_data
-
+            uniteddict['creator'] = artwork['creator']
+            uniteddict['title'] = artwork['title']
+    return uniteddict
 
 ## Search for a creator on Wikidata based on a given string
 def search_wd_entities(searchstr, language):
@@ -54,39 +53,61 @@ def search_wd_entities(searchstr, language):
             description = '[no description]'
         question += (str(i+1) + ' ' + label + ' – ' + description +
                      ' (' + possiblematches[i]['id'] + ')\n')
-    question += ('Press the number of the correct item or abort with ' +
-                 'anything else! ')
+    question += ('Enter the number of the correct item or the QID of the '
+                 'correct item or a "new string to search Wikidata for" in '
+                 'double quotes or abort with anything else!\n')
+    if len(possiblematches) == 0:
+        question = ('The search for "' + searchstr + '" has not found any '
+                    'possible matches. Enter the QID of the correct item or a '
+                    '"new string to search Wikidata for" in double quotes or '
+                    'abort with anything else!\n')
     return question, possiblematches
-
 
 ## Try to match a given search string to a Wikidata item with manual checking
 def try_matching_str_to_wd(searchstr, language, mappingjsonfile):
-    mapping = {}
+    searchstr0 = searchstr
     try:
         with open(mappingjsonfile, 'r') as readfile:
             mapping = json.load(readfile)
     except (FileNotFoundError, ValueError):
-        pass
+        mapping = {}
     if searchstr in mapping:
         response = mapping[searchstr]
     else:
-        question, possiblematches = search_wd_entities(searchstr, language)
-        # TODO: Make input of alternative search string and result possible!
-        try:
-            i = int(input(question)) - 1
-            if i < 0:
-                raise IndexError('Indices < 0 not allowed here!')
-            matchedid = possiblematches[i]['id']
+        while 'response' not in locals():
+            question, possiblematches = search_wd_entities(searchstr, language)
+            answer = input(question)
+            print('')
+            matchindex = -1
+            try:
+                matchindex = int(answer) - 1
+            except:
+                pass
+            # abort
+            if answer == '':
+                response = '[' + searchstr0 + ']'
+            # number of possible match entered
+            elif matchindex in range(0, len(possiblematches)):
+                newmatchedid = possiblematches[matchindex]['id']
+                response = newmatchedid
+            # QID entered
+            elif (answer[0] == 'Q' and set(answer[1:] + '0123456789') ==
+                  {'0','1','2','3','4','5','6','7','8','9'}): # not using re
+                newmatchedid = answer
+                response = newmatchedid
+            # new search string entered
+            elif answer[0] == answer[-1] == '"':
+                searchstr = answer[1:-1]
+            # abort
+            else:
+                response = '[' + searchstr0 + ']'
+        if 'newmatchedid' in locals():
             # write newly matched ID to mapping file
-            mapping[searchstr] = matchedid
+            mapping[searchstr0] = newmatchedid
             with open(mappingjsonfile, 'w+') as writefile:
                 writefile.write(json.dumps(mapping, ensure_ascii=False,
                                            indent=4, sort_keys=True))
-            response = matchedid
-        except (ValueError, IndexError):
-            response = '[' + searchstr + ']'
     return response
-
 
 ## Convert the collection to QuickStatements format
 def artworkjson2qs(artworkjson):
@@ -130,7 +151,6 @@ def artworkjson2qs(artworkjson):
     #TODO: non-unique properties such as P180 should be able to have >1 value
     return outputstr
 
-
 ## Try to write a file and ask to overwrite it if it yet exists
 def try_write_file(outputfile, output):
     try:
@@ -173,7 +193,7 @@ if inputjsonfile:
     for inputdict in inputdictlist:
         uniteddict = unite(inputdict)
         outputdictlist.append(uniteddict)
-        outputqs += artworkjson2qs(uniteddict)
+        outputqs += artworkjson2qs(uniteddict) + '\n'
     # determine augmented json output file
     outputfileaugmented = inputjsonfile.rsplit('.json')[0]+'_augmented.json'
     if args.outputfileaugmented:
@@ -199,4 +219,5 @@ if inputjsonfile:
 # * process creation data before QuickStatements conversion(?)
 # * handle artwork groups
 # * get the collection property (P195) from bstgs_inventory.json and get a source for P217 and P195
+# * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 
