@@ -20,10 +20,15 @@ def unite(inputdict):
         if inputdict['invno'] in item['invno']: # TODO: matches also groups atm
             uniteddict['wdqid'] = ('Q' + str(item['wdqid']))
     # BStGS inventory list
-    for artwork in bstgsinventory:
-        if inputdict['invno'] == artwork['invno']:
-            uniteddict['creator'] = artwork['creator']
-            uniteddict['title'] = artwork['title']
+    if inputdict['invno'] in list(artwork['invno'] for artwork in bstgsinventory):
+        for artwork in bstgsinventory:
+        # TODO: find better solution instead of this double checking
+            if inputdict['invno'] == artwork['invno']:
+                uniteddict['creator'] = artwork['creator']
+                uniteddict['title'] = artwork['title']
+    else:
+        uniteddict['invno not found in inventory'] = True
+        print('No inventory entry found for number: ', inputdict['invno'])
     return uniteddict
 
 ## Search for a creator on Wikidata based on a given string
@@ -32,7 +37,7 @@ def search_wd_entities(searchstr, language):
     params = urllib.parse.urlencode({'search': searchstr,
                                      'action': 'wbsearchentities',
                                      'language': language, 'format': 'json'})
-    f = urllib.request.urlopen('http://www.wikidata.org/w/api.php?%s' % params)
+    f = urllib.request.urlopen('http://www.wikidata.org/w/api.php?' + params)
     f = f.read().decode('utf-8')
     g = json.loads(f)
     possiblematches = g['search']
@@ -112,11 +117,18 @@ def try_matching_str_to_wd(searchstr, language, mappingjsonfile):
 ## Convert the collection to QuickStatements format
 def artworkjson2qs(artworkjson):
     outputstr = ''
+    # Add warning if the inventory number could not be found in the inventory
+    commentOutStr = ''
+    if 'invno not found in inventory' in artworkjson:
+        commentOutStr = '# '
+        outputstr = (commentOutStr + 'WARNING: The inventory number was not '
+                     'found in the inventory!\n' + outputstr)
+    # Prepare extension of existing and creation of new items
     if 'wdqid' in artworkjson:
-        ref = artworkjson['wdqid']
+        ref = commentOutStr + artworkjson['wdqid']
     else:
-        outputstr += 'CREATE\n'
-        ref = 'LAST'
+        outputstr += commentOutStr + 'CREATE\n'
+        ref = commentOutStr + 'LAST'
     # Match creation data to Wikidata
     if 'creator' in artworkjson:
         creator = artworkjson['creator']['value']
@@ -135,19 +147,21 @@ def artworkjson2qs(artworkjson):
                         'data/bstgs_wd_creator_mapping.json')
                     creator += ('	' + creatorqualifierdict[key] +
                                 '	' + creatorinqualifier)
-    # Adding of statement constructors
+    # Add statement constructors
     if 'title' in artworkjson:
         outputstr += (ref + '	Lde	"' + artworkjson['title'] + '"\n')
     if 'creator' in artworkjson:
         outputstr += (ref + '	P170	' + creator + '\n')
     outputstr += (ref + '	P217	"' + artworkjson['invno'] +
                   '"	P195	Q812285\n')
+    if 'instanceOf' in artworkjson:
+        outputstr += (ref + '	P31	' + artworkjson['instanceOf'] + '\n')
     if 'image' in artworkjson:
         outputstr += (ref + '	P18	"' + artworkjson['image'] + '"\n')
     if 'commonscat' in artworkjson:
         outputstr += (ref + '	P373	"' + artworkjson['commonscat'] + '"\n')
     if 'depicts' in artworkjson:
-        outputstr += (ref + '	P180	"' + artworkjson['depicts'] + '"\n')
+        outputstr += (ref + '	P180	' + artworkjson['depicts'] + '\n')
     #TODO: non-unique properties such as P180 should be able to have >1 value
     return outputstr
 
@@ -215,7 +229,6 @@ if inputjsonfile:
 
 
 # agenda
-# * handle not matched invno better: how?
 # * process creation data before QuickStatements conversion(?)
 # * handle artwork groups
 # * get the collection property (P195) from bstgs_inventory.json and get a source for P217 and P195

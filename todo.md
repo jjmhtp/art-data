@@ -16,4 +16,5 @@
     - P1877: after a work by
     - P1773: attributed to
     - Q4233718: anonymous
-
+- collection of inconsistencies in the BStGS inventory PDF files:
+    - creator: "Honthorst-Nachahmer"
