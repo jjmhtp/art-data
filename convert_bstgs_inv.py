@@ -5,6 +5,7 @@ import re
 import csv
 import json
 
+# many words are abbreviated apart from 'd. Ä.' and 'gen.' e.g. in 'Bildn. d. Adelheid, Tochter des Grafen Nikolaus v. Fleckenburg' and many others
 
 def parse_creator_rest(input_string):
 # TODO: move this functionality to the artworkjson2qs function not to write
@@ -109,10 +110,13 @@ def convert_row(row):
     dictionary['creator'] = parse_creator(row[1].strip())
     title_string = row[2].replace(', gen.', ', genannt')
     dictionary['title'] = title_string.strip()
+    dictionary['sURL'] = row[3]
+    dictionary['stime'] = row[4]
     return dictionary
 
 def iterate_bstgs_inv():
-    reader = csv.reader(open('data/bstgs_inventory.csv'))
+    reader = csv.reader(open('data/bstgs_inventory.csv'),
+                        skipinitialspace=True, strict=True)
     inv_list = list(row for row in reader)
     inv_converted = []
     for row in inv_list:
