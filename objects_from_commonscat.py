@@ -12,20 +12,21 @@ def catpages(catname):
         'wikimedia', 'categories': catname, 'ns[6]': '1', 'ns[14]': '1',
         'ext_image_data': '1', 'file_usage_data': '1', 'format': 'csv',
         'doit': '1'})
-    f = urllib.request.urlopen('http://tools.wmflabs.org/catscan2/'
-                               'catscan2.php?' + params)
-    
+    url = ('http://tools.wmflabs.org/catscan3/catscan2.php?' + params)
+    f = urllib.request.urlopen(url)
+
     newlines = f.read().decode('utf-8')
     newlines = newlines.split('\n')[1:]
     newlines = '\n'.join(newlines)
     newlines = io.StringIO(newlines)
     
     reader = csv.DictReader(newlines)
-    pageNames = ''
     pages = []
     for row in reader:
-        pageNames += row['nstext'] + ':' + row['title'] + '\n'
-        pages += [{'image': row['nstext'] + ':' + row['title']}]
+	    pages += [{'image': row['title'], 'nstext': row['nstext']}]
+        # TODO: differentiate between image and commonscat!
+        # take care of the spaces in commonscat!
+        # row['nstext']
     return pages
 
 def invnos_for_cat(catname):
@@ -38,8 +39,9 @@ def invnos_for_cat(catname):
     while i < len(pages):
         params = urllib.parse.urlencode({'action': 'raw',
                                          'title': pages[i]['image']})
-        f = urllib.request.urlopen('https://commons.wikimedia.org/w/index.php?'
-                                   + params)
+        url = 'https://commons.wikimedia.org/w/index.php?' + params
+        print(url) # TODO: testing
+        f = urllib.request.urlopen(url)
         f = f.read().decode('utf-8')
         print('\n', pages[i]['image'], '\n', f)
         answer = input('Please insert the inventory number! (Or input "exit" '
@@ -67,16 +69,24 @@ def invnos_for_cat(catname):
         else:
             pages[i]['invno'] = answer
             i += 1
-        # Add instanceOf, depicts etc. # TODO: better Commons parsing
-        ## instanceOf
-        print('What is the object instance of?')
-        pages[i]['instanceOf'] = collect_data.try_matching_str_to_wd(None,
-            'en', 'data/object_classes_mapping.json')
-        # TODO: make mapping file static?
-        print('What does the object depict?')
-        pages[i]['instanceOf'] = collect_data.try_matching_str_to_wd(None,
-            'en', None) # TODO: make mapping file optional!
-        # TODO: more
+
+        # Differentiate between image and commonscat
+        print(pages[i]['nstext']) # TODO: testing
+        if pages[i]['nstext'] == 'Category':
+            pages[i]['commonscat'] = pages[i]['image']
+            del pages[i]['image']
+
+
+#        # Add instanceOf, depicts etc. # TODO: better Commons parsing
+#        ## instanceOf
+#        print('What is the object instance of?')
+#        pages[i]['instanceOf'] = collect_data.try_matching_str_to_wd(None,
+#            'en', 'data/object_classes_mapping.json')
+#        # TODO: make mapping file static?
+#        print('What does the object depict?')
+#        pages[i]['instanceOf'] = collect_data.try_matching_str_to_wd(None,
+#            'en', None) # TODO: make mapping file optional!
+#        # TODO: more
     return pages
 
 if __name__ == "__main__":

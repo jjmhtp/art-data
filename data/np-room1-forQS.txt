@@ -1,0 +1,14 @@
+NP 2015-06-03 Saal 1
+
+10031,own
+9383,http://commons.wikimedia.org/wiki/File:Johann_Friedrich_August_Tischbein_-_Nicolas_Ch%C3%A2telain_im_Garten.jpg 1926 aus Kunsthandel erw.
+HUW 21,Category:Anne-Marie-Louise Thélusson, Countess of Sorcy (David) , Dauerleihgabe der HypoVereinsbank 1971 aus Privatbesitz erw.
+WAF B 4,own->Category:Paris by Antonio Canova,1816 durch Kronprinz Ludwig von Canova erw.; 1811 beauftragt (Führer, 3. Aufl. S. 42 An… Can…: Paris von Claudia Steinhardt-Hirsch) war in der Glyptothek ab 1830
+HUW 2,File:M.Teresa Vallabriga.jpg
+9334
+8575
+HUW 13
+9494
+HUW 15
+HUW 18
+

@@ -1,0 +1,129 @@
+[
+    {
+        "invno not found in inventory": true,
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand - Der Bildhauer Josef Flossmann 1907-08-1.jpg",
+        "depicts": "Q1239581",
+        "invno": "B 40 oder B 464"
+    },
+    {
+        "title": "Der Netzträger",
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand - Der Netztraeger 1886-1.jpg",
+        "creator": {
+            "value": "Adolf von Hildebrand"
+        },
+        "invno": "B 367"
+    },
+    {
+        "title": "Maria Fiedler",
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand - Marie Louise Fiedler 1882-1.jpg",
+        "creator": {
+            "value": "Adolf von Hildebrand"
+        },
+        "invno": "B 467"
+    },
+    {
+        "title": "Jagende Amazonen (Mittelteil des Amazonentriptychons)",
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand Amazonenjagd-1.jpg",
+        "creator": {
+            "value": "Adolf von Hildebrand"
+        },
+        "invno": "B 576"
+    },
+    {
+        "title": "Philoktet",
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand Philoktet 1886-1.jpg",
+        "creator": {
+            "value": "Adolf von Hildebrand"
+        },
+        "invno": "B 556"
+    },
+    {
+        "instanceOf": "Q860861",
+        "image": "Adolf von Hildebrand, Konrad Fiedler.jpg",
+        "title": "Der Kunsthistoriker und Mäzen Conrad Fiedler",
+        "invno": "B 295",
+        "depicts": "Q65764",
+        "creator": {
+            "value": "Adolf von Hildebrand"
+        }
+    },
+    {
+        "instanceOf": "Q860861",
+        "image": "Antonio Canova - Paris statue - BStGS Inv. No. WAF B 4.jpg",
+        "title": "Paris (Statue)",
+        "invno": "WAF B 4",
+        "wdqid": "Q20032140",
+        "creator": {
+            "value": "Antonio Canova"
+        }
+    },
+    {
+        "title": "Der Mann mit der zerbrochenen Nase",
+        "instanceOf": "Q860861",
+        "image": "Auguste Rodin Der Mann mit der zerbrochenen Nase 1863-1.jpg",
+        "creator": {
+            "value": "Auguste Rodin"
+        },
+        "invno": "L 2092"
+    },
+    {
+        "title": "Eva",
+        "instanceOf": "Q860861",
+        "image": "Auguste Rodin Eva 1881-1.jpg",
+        "creator": {
+            "value": "Auguste Rodin"
+        },
+        "invno": "B 355"
+    },
+    {
+        "title": "Kauernde",
+        "instanceOf": "Q860861",
+        "image": "Auguste Rodin Kauernde 1880-82-1.jpg",
+        "creator": {
+            "value": "Auguste Rodin"
+        },
+        "invno": "B 58"
+    },
+    {
+        "invno not found in inventory": true,
+        "instanceOf": "Q860861",
+        "image": "Auguste Rodin, Helene von Nostitz.jpg",
+        "depicts": "Q102918",
+        "invno": "B 903 oder FV 11"
+    },
+    {
+        "commonscat": "Der Hüttenarbeiter by Constantin Meunier",
+        "instanceOf": "Q860861",
+        "image": "Constantin Meunier Der Huettenarbeiter, um 1890 NP-1.jpg",
+        "title": "Der Hüttenarbeiter",
+        "invno": "B 15",
+        "creator": {
+            "value": "Constantin Meunier"
+        }
+    },
+    {
+        "commonscat": "Flora by Albert-Ernest Carrier-Belleuse",
+        "instanceOf": "Q860861",
+        "image": "Albert Ernest Carrier-Belleuse Flora um 1870-80-1.jpg",
+        "title": "Flora",
+        "invno": "B 777",
+        "creator": {
+            "value": "Albert Ernest Carrier-Belleuse"
+        }
+    },
+    {
+        "commonscat": "Psyche by Wolf von Hoyer",
+        "instanceOf": "Q860861",
+        "image": "Wolf von Hoyer, Psyche.jpg",
+        "title": "Psyche",
+        "invno": "L 1853",
+        "creator": {
+            "value": "Wolf von Hoyer"
+        }
+    }
+]

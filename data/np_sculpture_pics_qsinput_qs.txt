@@ -1,0 +1,101 @@
+# WARNING: The inventory number was not found in the inventory!
+# CREATE
+# LAST	P217	"B 40 oder B 464"	P195	Q812285
+# LAST	P31	Q860861
+# LAST	P18	"Adolf von Hildebrand - Der Bildhauer Josef Flossmann 1907-08-1.jpg"
+# LAST	P180	Q1239581
+
+CREATE
+LAST	Lde	"Der Netzträger"
+LAST	P170	Q364808
+LAST	P217	"B 367"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Adolf von Hildebrand - Der Netztraeger 1886-1.jpg"
+
+CREATE
+LAST	Lde	"Maria Fiedler"
+LAST	P170	Q364808
+LAST	P217	"B 467"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Adolf von Hildebrand - Marie Louise Fiedler 1882-1.jpg"
+
+CREATE
+LAST	Lde	"Jagende Amazonen (Mittelteil des Amazonentriptychons)"
+LAST	P170	Q364808
+LAST	P217	"B 576"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Adolf von Hildebrand Amazonenjagd-1.jpg"
+
+CREATE
+LAST	Lde	"Philoktet"
+LAST	P170	Q364808
+LAST	P217	"B 556"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Adolf von Hildebrand Philoktet 1886-1.jpg"
+
+CREATE
+LAST	Lde	"Der Kunsthistoriker und Mäzen Conrad Fiedler"
+LAST	P170	Q364808
+LAST	P217	"B 295"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Adolf von Hildebrand, Konrad Fiedler.jpg"
+LAST	P180	Q65764
+
+Q20032140	Lde	"Paris (Statue)"
+Q20032140	P170	Q5547
+Q20032140	P217	"WAF B 4"	P195	Q812285
+Q20032140	P31	Q860861
+Q20032140	P18	"Antonio Canova - Paris statue - BStGS Inv. No. WAF B 4.jpg"
+
+CREATE
+LAST	Lde	"Der Mann mit der zerbrochenen Nase"
+LAST	P170	Q30755
+LAST	P217	"L 2092"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Auguste Rodin Der Mann mit der zerbrochenen Nase 1863-1.jpg"
+
+CREATE
+LAST	Lde	"Eva"
+LAST	P170	Q30755
+LAST	P217	"B 355"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Auguste Rodin Eva 1881-1.jpg"
+
+CREATE
+LAST	Lde	"Kauernde"
+LAST	P170	Q30755
+LAST	P217	"B 58"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Auguste Rodin Kauernde 1880-82-1.jpg"
+
+# WARNING: The inventory number was not found in the inventory!
+# CREATE
+# LAST	P217	"B 903 oder FV 11"	P195	Q812285
+# LAST	P31	Q860861
+# LAST	P18	"Auguste Rodin, Helene von Nostitz.jpg"
+# LAST	P180	Q102918
+
+CREATE
+LAST	Lde	"Der Hüttenarbeiter"
+LAST	P170	Q552440
+LAST	P217	"B 15"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Constantin Meunier Der Huettenarbeiter, um 1890 NP-1.jpg"
+LAST	P373	"Der Hüttenarbeiter by Constantin Meunier"
+
+CREATE
+LAST	Lde	"Flora"
+LAST	P170	Q2143726
+LAST	P217	"B 777"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Albert Ernest Carrier-Belleuse Flora um 1870-80-1.jpg"
+LAST	P373	"Flora by Albert-Ernest Carrier-Belleuse"
+
+CREATE
+LAST	Lde	"Psyche"
+LAST	P170	Q2588853
+LAST	P217	"L 1853"	P195	Q812285
+LAST	P31	Q860861
+LAST	P18	"Wolf von Hoyer, Psyche.jpg"
+LAST	P373	"Psyche by Wolf von Hoyer"
+

@@ -1,0 +1,204 @@
+CREATE
+LAST	Lde	"Der Garten des Ariost"
+LAST	P170	Q250194
+LAST	P217	"11523"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Anselm_Feuerbach_001.jpg"
+
+CREATE
+LAST	Lde	"Die Hochzeitsreise"
+LAST	P170	Q551901
+LAST	P217	"11577"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_002.jpg"
+
+CREATE
+LAST	Lde	"Die Morgenstunde"
+LAST	P170	Q551901
+LAST	P217	"11559"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_-_Morgenstunde_-_1858.jpeg"
+
+CREATE
+LAST	Lde	"Nächtlicher Zweikampf"
+LAST	P170	Q551901
+LAST	P217	"11573"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_005.jpg"
+
+CREATE
+LAST	Lde	"Nixen an der Waldquelle"
+LAST	P170	Q551901
+LAST	P217	"11586"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_006.jpg"
+
+CREATE
+LAST	Lde	"Rübezahl"
+LAST	P170	Q551901
+LAST	P217	"11583"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_008.jpg"
+
+CREATE
+LAST	Lde	"Einsiedler, Violine spielend"
+LAST	P170	Q164979
+LAST	P217	"11556"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Carl_Spitzweg_046.jpg"
+
+CREATE
+LAST	Lde	"Adolf Friedrich von Schack"
+LAST	P170	Q585323
+LAST	P217	"11453"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"LenbachPortraitSchack.jpg"
+
+CREATE
+LAST	Lde	"Die Alhambra in Granada"
+LAST	P170	Q585323
+LAST	P217	"11457"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"LenbachAlhambra.jpg"
+
+CREATE
+LAST	Lde	"Der Tocador de la Reina auf der Alhambra in Granada"
+LAST	P170	Q585323
+LAST	P217	"11456"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"LenbachTocador.jpg"
+
+CREATE
+LAST	Lde	"Anna Schubart"
+LAST	P170	Q585323
+LAST	P217	"11451"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"LenbachAnnaSchubart.jpg"
+
+CREATE
+LAST	Lde	"Amaryllis"
+LAST	P170	Q123071
+LAST	P217	"11535"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf"	S813	"+00000002015-07-28T19:28:21Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Böcklin,_Arnold_-_Die_Klage_des_Hirten_-_1866.jpg"
+
+CREATE
+LAST	Lde	"Küste von Helgoland"
+LAST	P170	Q188306
+LAST	P217	"11605"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Christian_Morgenstern_-_Ostküste_von_Helgoland_(1863).jpg"
+
+CREATE
+LAST	Lde	"Der Türmer"
+LAST	P170	Q85077
+LAST	P217	"11551"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Eduard_Jakob_von_Steinle_-_The_Tower_Watchman_-_WGA21783.jpg"
+
+CREATE
+LAST	Lde	"Villa am Meer I"
+LAST	P170	Q123071
+LAST	P217	"11528"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf"	S813	"+00000002015-07-28T19:28:21Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Böcklin_Villa_am_Meer_I.jpg"
+
+CREATE
+LAST	Lde	"Blüte der Kunst in München"
+LAST	P170	Q318886
+LAST	P217	"11481"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Eugen_Neureuther_-_The_Arts_Flourishing_in_Munich_-_WGA16535.jpg"
+
+CREATE
+LAST	Lde	"Spanisches Ständchen (Serenade aus dem "Barbier von Sevilla")"
+LAST	P170	Q164979
+LAST	P217	"11560"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Carl_Spitzweg_Spanisches_Ständchen_(1).jpg"
+
+CREATE
+LAST	Lde	"Türken in einem Kaffeehaus"
+LAST	P170	Q164979
+LAST	P217	"11552"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Carl_Spitzweg_Türken_i_Kaffeehaus_(1).jpg"
+
+CREATE
+LAST	Lde	"Das Generalife bei Granada"
+LAST	P170	Q96677
+LAST	P217	"11614"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Eduard_Gerhardt_Granada.jpg"
+
+CREATE
+LAST	Lde	"Familienbild"
+LAST	P170	Q250194
+LAST	P217	"11514"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Anselm_Feuerbach_Mutter_mit_Kindern.jpg"
+
+CREATE
+LAST	Lde	"Badende Kinder"
+LAST	P170	Q250194
+LAST	P217	"11513"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Anselm_Feuerbach_Badende_Kinder.jpg"
+
+CREATE
+LAST	Lde	"Triton und Nereïde"
+LAST	P170	Q123071
+LAST	P217	"11534"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf"	S813	"+00000002015-07-28T19:28:21Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Arnold_Böcklin_Die_Nereide.jpg"
+
+CREATE
+LAST	Lde	"Aus Goethes "Hermann und Dorothea""
+LAST	P170	Q318886
+LAST	P217	"11478"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Eugen_Neureuther_Aus_Goethes_Hermann_und_Dorothea_1864.jpg"
+
+CREATE
+LAST	Lde	"Reiterbildnis Kaiser Karls V. (nach Tizian)"
+LAST	P170	Q585323
+LAST	P217	"11686"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Franz_von_Lenbach_Kaiser_Karl_V_(nach_Tizian)_1868_Sammlung_Schack.jpg"
+
+CREATE
+LAST	Lde	"Venus von Urbino (nach Tizian)"
+LAST	P170	Q585323
+LAST	P217	"11428"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Franz_von_Lenbach_Venus_von_Urbino_(nach_Tizian)_1866_Sammlung_Schack.jpg"
+
+CREATE
+LAST	Lde	"Blick von der Villa Malta auf Sankt Peter"
+LAST	P170	Q1694009
+LAST	P217	"11468"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf"	S813	"+00000002015-07-28T19:28:21Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Johann_Georg_von_Dillis_Blick_von_der_Villa_Malta_auf_Sankt_Peter_1818.jpg"
+
+CREATE
+LAST	Lde	"Der Traum des Gefangenen"
+LAST	P170	Q551901
+LAST	P217	"11565"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Moritz_von_Schwind_Der_Traum_des_Gefangenen.jpg"
+
+CREATE
+LAST	Lde	"Der Löwenhof der Alhambra"
+LAST	P170	Q96677
+LAST	P217	"11630"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Eduard_Gerhardt_Der_Löwenhof_der_Alhambra.jpg"
+
+CREATE
+LAST	Lde	"Ein Hypochonder"
+LAST	P170	Q164979
+LAST	P217	"11563"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Carl_Spitzweg_-_Der_Hypochonder.jpg"
+
+CREATE
+LAST	Lde	"Der Abschied"
+LAST	P170	Q164979
+LAST	P217	"11561"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P18	"Carl_Spitzweg_-_Der_Abschied.jpg"
+
+CREATE
+LAST	Lde	"Villa am Meer II"
+LAST	P170	Q123071
+LAST	P217	"11536"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf"	S813	"+00000002015-07-28T19:28:21Z/13"	S123	Q812285	S407	Q188
+LAST	P373	"Villa_by_the_Sea,_version_II"
+
+CREATE
+LAST	Lde	"Hirtenknabe"
+LAST	P170	Q585323
+LAST	P217	"11450"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"	S813	"+00000002015-07-28T19:28:27Z/13"	S123	Q812285	S407	Q188
+LAST	P373	"Shepherd_boy_by_Franz_von_Lenbach_(Schack-Galerie)"
+
+CREATE
+LAST	Lde	"Loreley"
+LAST	P170	Q85077
+LAST	P217	"11542"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"	S813	"+00000002015-07-28T19:28:31Z/13"	S123	Q812285	S407	Q188
+LAST	P373	"The_Loreley_(Eduard_Jakob_von_Steinle)"
+
+CREATE
+LAST	Lde	"Paolo und Francesca"
+LAST	P170	Q250194
+LAST	P217	"11521"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"	S813	"+00000002015-07-28T19:28:24Z/13"	S123	Q812285	S407	Q188
+LAST	P373	"Paolo_and_Francesca_(Anselm_Feuerbach)"
+
