@@ -46,44 +46,6 @@ def unite(inputdict):
     return uniteddict
 
 
-
-def search_wd_entities(searchstr, language):
-    """"Search for an item on Wikidata based on a given string"""
-    searchstr.replace(' ','+')
-    params = urllib.parse.urlencode({'search': searchstr,
-                                     'action': 'wbsearchentities',
-                                     'language': language, 'format': 'json'})
-    f = urllib.request.urlopen('http://www.wikidata.org/w/api.php?' + params)
-    f = f.read().decode('utf-8')
-    g = json.loads(f)
-    possiblematches = g['search']
-    # construct a question if one of the possible matches is correct
-    question = ('The search for "' + searchstr +
-                '" has found ' + str(len(possiblematches)) +
-                ' possible matches:\n')
-    for i in range(len(possiblematches)):
-        label = possiblematches[i].get('label')
-        description = possiblematches[i].get('description')
-        if label:
-            label = '"' + label + '"'
-        else:
-            label = '[no label]'
-        if description:
-            description = '"' + description + '"'
-        else:
-            description = '[no description]'
-        question += (str(i+1) + ' ' + label + ' – ' + description +
-                     ' (' + possiblematches[i]['id'] + ')\n')
-    question += ('Enter the number of the correct item or the QID of the '
-                 'correct item or a "new string to search Wikidata for" in '
-                 'double quotes or abort with anything else!\n')
-    if len(possiblematches) == 0:
-        question = ('The search for "' + searchstr + '" has not found any '
-                    'possible matches. Enter the QID of the correct item or a '
-                    '"new string to search Wikidata for" in double quotes or '
-                    'abort with anything else!\n')
-    return question, possiblematches
-
 def search_wd_items(searchstr, language):
     """"Search for an item on Wikidata based on a given string"""
     searchstr.replace(' ','+')
@@ -114,7 +76,6 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
       in the "text" key
     * inputstrlist is used to give a list of input strings for unit testing
     """
-    """Replacement for try_matching_str_to_wd()""" # TODO: remove!
     inputstrno = 0 # begin with first item of inputstrlist
     searchstr0 = searchstr
     # Load the optional mapping file if given and found
@@ -227,52 +188,6 @@ class TestMatchWDItem(unittest.TestCase): # TODO!
 
 
 
-def try_matching_str_to_wd(searchstr, language, mappingjsonfile):
-    """Try to find a Wikidata item, e.g. by searching with a string"""
-    searchstr0 = searchstr
-    try:
-        with open(mappingjsonfile, 'r') as readfile:
-            mapping = json.load(readfile)
-    except (FileNotFoundError, ValueError):
-        mapping = {}
-    if searchstr in mapping:
-        response = mapping[searchstr]
-    else:
-        while 'response' not in locals():
-            question, possiblematches = search_wd_entities(searchstr, language)
-            answer = input(question)
-            print('')
-            matchindex = -1
-            try:
-                matchindex = int(answer) - 1
-            except:
-                pass
-            # abort
-            if answer == '':
-                response = '[' + searchstr0 + ']'
-            # number of possible match entered
-            elif matchindex in range(0, len(possiblematches)):
-                newmatchedid = possiblematches[matchindex]['id']
-                response = newmatchedid
-            # QID entered
-            elif (answer[0] == 'Q' and set(answer[1:] + '0123456789') ==
-                  {'0','1','2','3','4','5','6','7','8','9'}): # not using re
-                newmatchedid = answer
-                response = newmatchedid
-            # new search string entered
-            elif answer[0] == answer[-1] == '"':
-                searchstr = answer[1:-1]
-            # abort
-            else:
-                response = '[' + searchstr0 + ']'
-        if 'newmatchedid' in locals():
-            # write newly matched ID to mapping file
-            mapping[searchstr0] = newmatchedid
-            with open(mappingjsonfile, 'w+') as writefile:
-                writefile.write(json.dumps(mapping, ensure_ascii=False,
-                                           indent=4, sort_keys=True))
-    return response
-
 ## Convert the collection to QuickStatements format
 def artworkjson2qs(artworkjson):
     outputstr = ''
@@ -291,8 +206,8 @@ def artworkjson2qs(artworkjson):
     # Match creation data to Wikidata
     if 'creator' in artworkjson:
         creator = artworkjson['creator']['value']
-        creator = try_matching_str_to_wd(creator, 'de',
-            'data/bstgs_wd_creator_mapping.json')
+        creator = match_wd_item('de', searchstr=creator,
+                  mappingjsonfile='data/bstgs_wd_creator_mapping.json')
         if 'qualifiers' in artworkjson['creator']:
             creatorqualifierdict = {'Kopie nach': 'P1877',
                                     'zugeschrieben': 'P1773'}
@@ -301,9 +216,9 @@ def artworkjson2qs(artworkjson):
                     #TODO: output the string in () if it could not be mapped
                     creatorinqualifier = artworkjson['creator']['qualifiers']\
                                          [key]
-                    creatorinqualifier = try_matching_str_to_wd(
-                        creatorinqualifier, 'de',
-                        'data/bstgs_wd_creator_mapping.json')
+                    creatorinqualifier = match_wd_item('de',
+                        searchstr=creatorinqualifier,
+                        mappingjsonfile='data/bstgs_wd_creator_mapping.json')
                     creator += ('	' + creatorqualifierdict[key] +
                                 '	' + creatorinqualifier)
     # Add statement constructors
