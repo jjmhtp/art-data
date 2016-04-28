@@ -37,6 +37,12 @@ def unite(inputdict):
                   inputdict['invno'])
     else:
         print('No inventory number was given.')
+
+
+    ## add any data, for a start: single depicts: TODO: extend
+#    print('What does the object depict?')
+#    uniteddict['depicts'] = match_wd_item('en')
+
     return uniteddict
 
 

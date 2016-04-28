@@ -12,8 +12,7 @@ def catpages(catname):
         'wikimedia', 'categories': catname, 'ns[6]': '1', 'ns[14]': '1',
         'ext_image_data': '0', 'file_usage_data': '0', 'format': 'json',
         'doit': '1'})
-    url = ('http://tools.wmflabs.org/catscan3/catscan2.php?' + params)
-    # TODO: Use PetScan!
+    url = ('https://petscan.wmflabs.org/?' + params)
     f = urllib.request.urlopen(url)
 
     pages = json.loads(f.read().decode('utf-8'))
@@ -81,7 +80,7 @@ def invnos_for_cat(catname):
         # TODO: Why is this functionality not in collect_data.py?
         else:
             pages[i]['invno'] = answer
-            # Add instanceOf, depicts etc. # TODO: better Commons parsing
+            # Add instanceOf, depicts etc. # TODO: better Commons parsing?
             ## instanceOf
             print('What is the object instance of?')
             pages[i]['instanceOf'] = collect_data.match_wd_item('en',
@@ -99,6 +98,7 @@ def invnos_for_cat(catname):
 
 #        # TODO: GET COLLECTION SOMEWHERE!!!!!!!
 #        print('What does the object depict?') # TODO: other values here?
+#        BETTER INTEGRATE THIS ADDITION FUNCITONALITY INTO collect_data.unite!
 
     # Compose dictionary with image and commonscat values
     for k in range(len(pages)):
