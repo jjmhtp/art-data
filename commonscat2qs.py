@@ -3,7 +3,7 @@
 
 import argparse
 import get_wd_bstgs
-import objects_from_commonscat
+import objects_from_commonscat_2_with_json
 import collect_data
 
 parser = argparse.ArgumentParser()
@@ -17,7 +17,7 @@ get_wd_bstgs.get_wd_bstgs
 # TODO
 
 # Run modules
-itemdictlist = objects_from_commonscat.invnos_for_cat(args.catname)
+itemdictlist = objects_from_commonscat_2_with_json.invnos_for_cat(args.catname)
 
 collect_data.process_multiple(itemdictlist, inputname='data/objects-'+args.catname)
 

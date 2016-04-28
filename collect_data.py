@@ -307,7 +307,9 @@ def artworkjson2qs(artworkjson):
         outputstr += (ref + '\tP170\t' + creator + '\n')
     if 'invno' in artworkjson:
         outputstr += (ref + '\tP217\t"' + artworkjson['invno'] +
-                  '"\tP195\tQ812285\tS854\t"' + artworkjson['sURL'])
+                  '"\tP195\tQ812285')
+        if 'sURL' in artworkjson: # there is no source if invno wasn't matched
+            outputstr += ('\tS854\t"' + artworkjson['sURL'])
                   # FIXME: Multiple statements for one source do not work in
 		  # QuickStatements!
                   # + '"\tS813\t"+0000000' + artworkjson['stime'][:-7] +

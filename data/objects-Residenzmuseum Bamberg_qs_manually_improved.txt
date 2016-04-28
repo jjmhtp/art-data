@@ -1,0 +1,58 @@
+CREATE
+LAST	Lde	"Maria auf der Mondsichel"
+LAST	P170	[Meister des Marienlebens (Meister der Lyversberg-Passion?)]
+LAST	P217	"WAF 647"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdfLAST	P31	Q3305213
+LAST	P18	"Meister des Marienlebens 006.jpg"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Blumenstück mit Monstranz"
+LAST	P170	Q18516759
+LAST	P217	"5963"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdfLAST	P31	Q3305213
+LAST	P18	"Kessel, Peter - Blumenstück mit Monstranz - 17th c.jpg"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Sintflut"
+LAST	Len	"Deluge"
+LAST	P170	Q164696
+LAST	P217	"L 1549"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdfLAST	P31	Q3305213
+LAST	P373	"Deluge (Hans Baldung)"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Bildnis Christiane von Eulenau"
+LAST	P170	Q191748
+LAST	P217	"13706"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdfLAST	P31	Q3305213
+LAST	P373	"Christiane von Eulenau (Cranach, Bamberg)"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Lucretia"
+LAST	Len	"Lucretia"
+LAST	P170	Q191748
+LAST	P217	"1418"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdfLAST	P31	Q3305213
+LAST	P373	"Lucretia by Lucas Cranach the Elder in Bamberg"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Opfer Abrahams"
+LAST	P170	Q191748
+LAST	P217	"4557"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdfLAST	P31	Q3305213
+LAST	P373	"Sacrifice of Isaac by Lucas Cranach (I) in Bamberg"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+CREATE
+LAST	Lde	"Gemäldegalerie"
+LAST	P170	Q1651802
+LAST	P18	"Johann Michael Bretschneider - Gemäldegalerie, um 1715 Leinwand.jpg"
+LAST	P195	Q812285
+LAST	P31	Q3305213
+
+

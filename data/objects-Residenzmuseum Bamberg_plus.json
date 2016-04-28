@@ -1,0 +1,75 @@
+[
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf",
+        "invno": "WAF 647",
+        "title": "Maria auf der Mondsichel",
+        "creator": {
+            "value": "Meister des Marienlebens (Meister der Lyversberg-Passion?)"
+        },
+        "image": "Meister des Marienlebens 006.jpg",
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:27.972344",
+        "collection": "Q812285"
+    },
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf",
+        "invno": "5963",
+        "title": "Blumenstück mit Monstranz",
+        "creator": {
+            "value": "Peter van Kessel"
+        },
+        "image": "Kessel, Peter - Blumenstück mit Monstranz - 17th c.jpg",
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:27.972344",
+        "collection": "Q812285"
+    },
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf",
+        "invno": "L 1549",
+        "commonscat": "Deluge (Hans Baldung)",
+        "title": "Die Sintflut",
+        "creator": {
+            "value": "Hans Baldung",
+            "called": "Grien"
+        },
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:21.949069",
+        "collection": "Q812285"
+    },
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf",
+        "invno": "13706",
+        "commonscat": "Christiane von Eulenau (Cranach, Bamberg)",
+        "title": "Bildnis Christiane von Eulenau",
+        "creator": {
+            "value": "d. Ä. Lucas Cranach"
+        },
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:21.949069",
+        "collection": "Q812285"
+    },
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf",
+        "invno": "1418",
+        "commonscat": "Lucretia by Lucas Cranach the Elder in Bamberg",
+        "title": "Lucretia",
+        "creator": {
+            "value": "d. Ä. Lucas Cranach"
+        },
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:21.949069",
+        "collection": "Q812285"
+    },
+    {
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf",
+        "invno": "4557",
+        "commonscat": "Sacrifice of Isaac by Lucas Cranach (I) in Bamberg",
+        "title": "Opfer Abrahams",
+        "creator": {
+            "value": "d. Ä. Lucas Cranach"
+        },
+        "instanceOf": "Q3305213",
+        "stime": "2015-07-28T19:28:21.949069",
+        "collection": "Q812285"
+    }
+]

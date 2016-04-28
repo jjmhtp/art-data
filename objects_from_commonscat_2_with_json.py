@@ -79,7 +79,6 @@ def invnos_for_cat(catname):
         # Simply add the inventory number
         else:
             pages[i]['invno'] = answer
-            i += 1
             # Add instanceOf, depicts etc. # TODO: better Commons parsing
             ## instanceOf
             print('What is the object instance of?')
@@ -91,6 +90,8 @@ def invnos_for_cat(catname):
             pages[i]['collection'] = collect_data.match_wd_item('en',
                 proposallist=[{'id': 'Q812285', 'text':
                                'Bavarian State Painting Collections'}])
+            i += 1 # FIXME: this has been directly behind the invno assignment
+	    # whyever, should it be here?
     
 
 
@@ -122,4 +123,6 @@ if __name__ == "__main__":
         output.write(json.dumps(result, ensure_ascii=False, indent=4,
                                 sort_keys=True))
 
+# agenda
+# * use PetScan
 

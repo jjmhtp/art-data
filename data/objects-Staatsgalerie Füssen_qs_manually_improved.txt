@@ -1,0 +1,9 @@
+CREATE
+LAST	Lde	"Stifterbild zur Folge mit Darstellungen zur Magnuslegende"
+LAST	P217	"9858"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_A-E(2).pdf
+LAST	P31	Q3305213
+LAST	P18	"Stifterbild zur Legende des heiligen Magnus Füssen c1570.jpg"
+LAST	P180	Q566085
+LAST	P170	Q4233718	P1779	Q23927024
+LAST	P170	[Allgäuer Meister um 1570 (Stephan Mair?)]
+ 
