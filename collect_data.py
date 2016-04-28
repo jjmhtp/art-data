@@ -316,8 +316,11 @@ def artworkjson2qs(artworkjson):
                   # 'Z/13"\tS123\tQ812285\tS407\tQ188\n')
     # S1476 "Bestandsliste der Bayerischen Staatsgemäldesammlungen A-E"
     # TODO: S304 [string for page]: hyphen for ranges
+        outputstr += '\n'
     if 'instanceOf' in artworkjson:
         outputstr += (ref + '\tP31\t' + artworkjson['instanceOf'] + '\n')
+    if 'collection' in artworkjson:
+        outputstr += (ref + '\tP195\t' + artworkjson['collection'] + '\n')
     if 'image' in artworkjson:
         outputstr += (ref + '\tP18\t"' + artworkjson['image'] + '"\n')
     if 'commonscat' in artworkjson:

@@ -1,15 +1,15 @@
 [
     {
-        "invno": "B 739",
-        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf",
-        "image": "Max Klinger, Elsa Asenijeff.jpg",
+        "title": "Elsa Asenijeff",
         "collection": "Q812285",
+        "sURL": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf",
         "creator": {
             "value": "Max Klinger"
         },
-        "title": "Elsa Asenijeff",
+        "instanceOf": "Q3305213",
+        "invno": "B 739",
         "stime": "2015-07-28T19:28:27.972344",
-        "instanceOf": "Q3305213"
+        "image": "Max Klinger, Elsa Asenijeff.jpg"
     },
     {
         "image": "Adolf von Hildebrand, Konrad Fiedler.jpg"

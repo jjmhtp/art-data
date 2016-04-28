@@ -13,6 +13,7 @@ def catpages(catname):
         'ext_image_data': '0', 'file_usage_data': '0', 'format': 'json',
         'doit': '1'})
     url = ('http://tools.wmflabs.org/catscan3/catscan2.php?' + params)
+    # TODO: Use PetScan!
     f = urllib.request.urlopen(url)
 
     pages = json.loads(f.read().decode('utf-8'))
@@ -76,7 +77,8 @@ def invnos_for_cat(catname):
                     # TODO: improve evtl
                     print('i (eig neu): ', pages[i], '\nj (eig alt): ', pages[j])
                     del pages[j]
-        # Simply add the inventory number
+        # Simply add the inventory number and ask for other info
+        # TODO: Why is this functionality not in collect_data.py?
         else:
             pages[i]['invno'] = answer
             # Add instanceOf, depicts etc. # TODO: better Commons parsing
@@ -123,6 +125,4 @@ if __name__ == "__main__":
         output.write(json.dumps(result, ensure_ascii=False, indent=4,
                                 sort_keys=True))
 
-# agenda
-# * use PetScan
 
