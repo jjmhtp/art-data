@@ -11,16 +11,16 @@ def catpages(catname):
     params = urllib.parse.urlencode({'language': 'commons', 'project':
         'wikimedia', 'categories': catname, 'ns[6]': '1', 'ns[14]': '1',
         'ext_image_data': '0', 'file_usage_data': '0', 'format': 'json',
-        'doit': '1'})
+	'doit': '1', 'output_compatability': 'catscan'})
     url = ('https://petscan.wmflabs.org/?' + params)
     f = urllib.request.urlopen(url)
 
     pages = json.loads(f.read().decode('utf-8'))
-    pages = pages['*'][0]['*']
+    pages = pages['*'][0]['a']['*']
     simplepages = []
     for page in pages:
-        simplepages += [{'title': page['a']['title'].replace('_', ' '),
-                         'nstext': page['a']['nstext']}]
+        simplepages += [{'title': page['title'].replace('_', ' '),
+                         'nstext': page['nstext']}]
 
     return simplepages
 

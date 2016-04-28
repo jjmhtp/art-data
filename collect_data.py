@@ -326,7 +326,7 @@ if __name__ == "__main__":
 
 # agenda
 # * process creation data before QuickStatements conversion(?)
-# * handle artwork groups
+# * handle artwork groups: probably just print a warning!
 # * get the collection property (P195) from bstgs_inventory.json and get a source for P217 and P195
 # * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 
