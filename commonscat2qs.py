@@ -10,11 +10,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('catname')
 args = parser.parse_args()
 
-# Renew resources (optionaly)
-## Renew Wikidata items
+# Renew Wikidata items
 get_wd_bstgs.get_wd_bstgs
-## Renew BStGS inventory
-# TODO
 
 # Run modules
 itemdictlist = objects_from_commonscat_2_with_json.invnos_for_cat(args.catname)

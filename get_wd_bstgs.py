@@ -28,6 +28,8 @@ def get_wd_bstgs():
     result = json.dumps(items, ensure_ascii=False, indent=4)
     with open('data/wd_invnos.json', 'w+') as output:
         output.write(result)
+    print('Inventory numbers of Wikidata items for BStGS artworks ' +
+          'refreshed to data/wd_invnos.json!')
 
 if __name__ == "__main__":
     get_wd_bstgs()

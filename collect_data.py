@@ -152,7 +152,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
         if answer == '':
             response = '[' + str(searchstr0) + ']'
         ## Proposal confirmed with "y"
-        elif proposallist and answer in list(i for i in abc):
+        elif proposallist and answer in list(i for i in
+                abc[:(len(proposallist))]):
             response = proposallist[abc.find(answer)]['id']
         ## Number of possible match entered
         elif 'possiblematches' in locals() and matchindex in range(0,
