@@ -10,69 +10,6 @@ import unittest
 items = json.load(open('data/wd_invnos.json', 'r'))
 bstgsinventory = json.load(open('data/bstgs_inventory.json', 'r'))
 
-## Function to unite collected data
-def unite(inputdict):
-    """Unite the data of Wikidata, the BStGS inventory list and given \
-    data for an artworkgroup""" # TODO: for now an artworkgroup(?)
-    uniteddict = inputdict
-    if 'invno' in inputdict:
-        # Wikidata
-        for item in items:
-            if inputdict['invno'] in item['invno']:
-            # TODO: matches also groups atm
-                uniteddict['wdqid'] = ('Q' + str(item['wdqid']))
-        # BStGS inventory list
-        if inputdict['invno'] in list(artwork['invno'] for artwork in
-                                      bstgsinventory):
-            for artwork in bstgsinventory:
-            # TODO: Find better solution instead of this double checking!
-                if inputdict['invno'] == artwork['invno']:
-                    uniteddict['creator'] = artwork['creator']
-                    uniteddict['title'] = artwork['title']
-                    uniteddict['sURL'] = artwork['sURL']
-                    uniteddict['stime'] = artwork['stime']
-        else:
-            uniteddict['invno not found in inventory'] = True
-            print('No inventory entry found for inventory number: ',
-                  inputdict['invno'])
-    else:
-        print('No inventory number was given.')
-
-    # Add instanceOf, depicts etc. # TODO: better Commons parsing?
-    ## instanceOf
-    print('What is the object instance of?')
-    uniteddict['instanceOf'] = match_wd_item('en',
-        mappingjsonfile='data/object_classes_mapping.json', # TODO: mapping useful?
-        proposallist=[{'id': 'Q3305213', 'text': 'painting'},
-                      {'id': 'Q860861', 'text': 'sculpture'}])
-    ## collection
-    print('''What is the object's collection?''')
-    uniteddict['collection'] = match_wd_item('en',
-        proposallist=[{'id': 'Q812285', 'text':
-                       'Bavarian State Painting Collections'}])
-    ## add any data # TODO
-    while 1: # TODO: exit through exiting answer
-        print('Is there another property you want to add?')
-        addingprop = match_wd_item('en', entitytype='property',
-            proposallist=[{'id': 'P180', 'text': 'depicts'}])
-        if addingprop == None:
-            break
-
-        addingpropdata = json.loads(urllib.request.urlopen(
-            'https://www.wikidata.org/wiki/Special:EntityData/' + addingprop +
-            '.json').read().decode('utf-8'))
-        addingpropdatatype = addingpropdata['entities'][addingprop]['datatype']
-        print('The datatype of ' + addingprop + ' is ' + addingpropdatatype +
-              '.')
-        if addingpropdatatype == 'wikibase-item':
-            print('What is the value for ' + addingprop + '?')
-            uniteddict[addingprop] = match_wd_item('en')
-            if uniteddict[addingprop] == None:
-                break
-        else:
-            uniteddict[addingprop] = input('Enter the value!\n\n  ')
-    return uniteddict
-
 
 def search_wd_items(searchstr, language, entitytype='item'):
     """"Search for an item on Wikidata based on a given string"""
@@ -95,7 +32,6 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
     The function gives the user the following input options to select an item:
     - (number of one of the possible matches if a previous search has found \
     possible matches)        -> response -> map!
-    - Wikidata entity ID     -> response -> map!
     - (new) WD-search-string -> search_wd_items()
     - abort                  -> response is "[search-string]"
 
@@ -118,7 +54,6 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
     while 'response' not in locals():
         # Construct elementary question
         question = ('Enter one of the following:\n'
-                    '- the entity ID of the correct entity,\n'
                     '- a "string to search Wikidata for in double quotes" or\n'
                     '- anything else to abort!\n')
 	# Add the proposals to question if proposallist is given
@@ -129,8 +64,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                 proposaltext += (abc[i] + ' ' + proposallist[i]['text'] +
                                  ' (' + proposallist[i]['id'] + ')\n')
             question = proposaltext + question
-            question = question.replace('- the enti', '- the letter of the ' +
-                'correct proposed entity,\n- the enti')
+            question = question.replace('- a "string', '- the letter of the ' +
+                'correct proposed entity,\n- a "string')
         # Process the optional search string if given
         if searchstr:
         ## Look in the mapping for the search string
@@ -143,8 +78,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                 question = ('The search for "' + searchstr + '" has not found '
                             'any possible matches.\n' + question)
             else:
-                question = question.replace('- the enti','- the number of the '
-                            'correct entity,\n- the enti')
+                question = question.replace('- a "string','- the number of the '
+                            'correct entity,\n- a "string')
                 matchesstr = ('The search for "' + searchstr + '" has found ' +
                               str(len(possiblematches))+' possible matches:\n')
         ## Add a line for each possible match
@@ -169,7 +104,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             inputstrno += 1
         else:
             print(question)
-            answer = input('  ')
+            answer = input('')
             # The long question string breaks the ouput here on OS X otherwise
             print('')
         matchindex = -1
@@ -192,11 +127,6 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
         elif 'possiblematches' in locals() and matchindex in range(0,
                 len(possiblematches)):
             newmatchedid = possiblematches[matchindex]['id']
-            response = newmatchedid
-        ## QID entered
-        elif (answer[0] in 'PQ' and set(answer[1:] + '0123456789') ==
-              {'0','1','2','3','4','5','6','7','8','9'}): # not using re
-            newmatchedid = answer
             response = newmatchedid
         ## New search string entered
         elif answer[0] == answer[-1] == '"':
@@ -224,9 +154,95 @@ class TestMatchWDItem(unittest.TestCase): # TODO!
                        inputstrlist=['1']),'Q1161913')
 
 
+def add_statement(itemdict, addingpropid=None, forceadd=False,
+                  valueproposallist=None):
+    """Add a statement to a given dictionary for an item
+    
+    If the property is given and the datatype of the property is \
+    wikibase-item, a list with proposals for the value coming from \
+    match_wd_item may be given.
+    """
+    abort = False
+    # Look for a property if none is given
+    if not addingpropid:
+        print('Is there another property you want to add?')
+        addingpropid = match_wd_item('en', entitytype='property',
+            proposallist=[{'id': 'P180', 'text': 'depicts'}])
+    # If property is given look for a value
+    if addingpropid != None:
+        addingpropdata = json.loads(urllib.request.urlopen(
+            'https://www.wikidata.org/wiki/Special:EntityData/' + addingpropid+
+            '.json').read().decode('utf-8'))
+        addingpropdatatype = (
+            addingpropdata['entities'][addingpropid]['datatype'])
+        addingproplabel = (
+            addingpropdata['entities'][addingpropid]['labels']['en']['value'])
+        addingpropref = '"' + addingproplabel + '" (' + addingpropid + ')'
+        print('The datatype of ' + addingpropref + ' is ' +
+              addingpropdatatype + '.')
+        if addingpropdatatype == 'wikibase-item':
+            print('What is the value for ' + addingpropref + '?')
+            value = match_wd_item('en', proposallist=valueproposallist)
+        else:
+            value = input('Enter the value!\n\n')
+        # Add statement if a value is given or adding is forced
+        if value or forceadd == True:
+            # Create property dictionary if not existing
+            if not itemdict.get(addingpropid):
+                itemdict[addingpropid] = []
+            # Add new statement to property dictionary
+            itemdict[addingpropid].append(value)
+    # If no property is given exit with abort=True
+    else:
+        abort = True
+    return itemdict, abort
 
-## Convert the collection to QuickStatements format
+def unite(inputdict):
+    """Unite the data of Wikidata, the BStGS inventory list and given \
+    data for an artworkgroup""" # TODO: for now an artworkgroup(?)
+    uniteddict = inputdict
+    if 'invno' in inputdict:
+        # Wikidata
+        for item in items:
+            if inputdict['invno'] in item['invno']:
+            # TODO: matches also groups atm
+                uniteddict['wdqid'] = ('Q' + str(item['wdqid']))
+        # BStGS inventory list
+        if inputdict['invno'] in list(artwork['invno'] for artwork in
+                                      bstgsinventory):
+            for artwork in bstgsinventory:
+            # TODO: Find better solution instead of this double checking!
+                if inputdict['invno'] == artwork['invno']:
+                    uniteddict['creator'] = artwork['creator']
+                    uniteddict['title'] = artwork['title']
+                    uniteddict['sURL'] = artwork['sURL']
+                    uniteddict['stime'] = artwork['stime']
+        else:
+            uniteddict['invno not found in inventory'] = True
+            print('No inventory entry found for inventory number: ',
+                  inputdict['invno'])
+    else:
+        print('No inventory number was given.')
+
+    # Add P31, P195 and arbitrary other statments TODO: better Commons parsing?
+    ## P31
+    uniteddict, abort = add_statement(uniteddict, addingpropid='P31',
+        forceadd=True, valueproposallist=
+            [{'id': 'Q3305213', 'text': 'painting'},
+             {'id': 'Q860861', 'text': 'sculpture'}])
+    ## P195
+    uniteddict, abort = add_statement(uniteddict, addingpropid='P195',
+        forceadd=True, valueproposallist=
+            [{'id': 'Q812285', 'text': 'Bavarian State Painting Collections'}])
+    # Add arbitrary other statements
+    abort = False
+    while not abort:
+        uniteddict, abort = add_statement(uniteddict)
+
+    return uniteddict
+
 def artworkjson2qs(artworkjson):
+    """Convert the collection to QuickStatements format"""
     artworkjson = {key:'[None]' if artworkjson[key] is None else
                   artworkjson[key] for key in list(artworkjson.keys())}
     outputstr = ''
@@ -277,21 +293,21 @@ def artworkjson2qs(artworkjson):
     # S1476 "Bestandsliste der Bayerischen Staatsgemäldesammlungen A-E"
     # TODO: S304 [string for page]: hyphen for ranges
         outputstr += '\n'
-    if 'instanceOf' in artworkjson:
-        outputstr += (ref + '\tP31\t' + artworkjson['instanceOf'] + '\n')
-    if 'collection' in artworkjson:
-        outputstr += (ref + '\tP195\t' + artworkjson['collection'] + '\n')
     if 'image' in artworkjson:
         outputstr += (ref + '\tP18\t"' + artworkjson['image'] + '"\n')
     if 'commonscat' in artworkjson:
         outputstr += (ref + '\tP373\t"' + artworkjson['commonscat'] + '"\n')
-    if 'P180' in artworkjson:
-        outputstr += (ref + '\tP180\t' + artworkjson['P180'] + '\n')
-    #TODO: non-unique properties such as P180 should be able to have >1 value
+    for prop in artworkjson.keys():
+        if prop not in ['invno', 'creator', 'title', 'stime', 'sURL']:
+            for value in artworkjson[prop]:
+                if not value:
+                    value = '[' + str(value) + ']'
+                outputstr += (ref + '\t' + prop + '\t' + value + '\n')
     return outputstr
 
-## Try to write a file and ask to overwrite it if it yet exists
+
 def try_write_file(outputfile, output, overwrite=False):
+    """Try to write a file and ask to overwrite it if it yet exists"""
     try:
         with open(outputfile, 'x') as f:
             f.write(output)
