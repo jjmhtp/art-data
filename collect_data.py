@@ -42,7 +42,7 @@ def unite(inputdict):
     ## instanceOf
     print('What is the object instance of?')
     uniteddict['instanceOf'] = match_wd_item('en',
-        mappingjsonfile='data/object_classes_mapping.json',
+        mappingjsonfile='data/object_classes_mapping.json', # TODO: mapping useful?
         proposallist=[{'id': 'Q3305213', 'text': 'painting'},
                       {'id': 'Q860861', 'text': 'sculpture'}])
     ## collection
@@ -53,23 +53,35 @@ def unite(inputdict):
     ## add any data # TODO
     while 1: # TODO: exit through exiting answer
         print('Is there another property you want to add?')
-        addingprop = match_wd_item('en',
+        addingprop = match_wd_item('en', entitytype='property',
             proposallist=[{'id': 'P180', 'text': 'depicts'}])
         if addingprop == None:
             break
-        print('What is the value for ' + addingprop + '?')
-        uniteddict[addingprop] = match_wd_item('en')
-        if uniteddict[addingprop] == None:
-            break
+
+        addingpropdata = json.loads(urllib.request.urlopen(
+            'https://www.wikidata.org/wiki/Special:EntityData/' + addingprop +
+            '.json').read().decode('utf-8'))
+        addingpropdatatype = addingpropdata['entities'][addingprop]['datatype']
+        print('The datatype of ' + addingprop + ' is ' + addingpropdatatype +
+              '.')
+        if addingpropdatatype == 'wikibase-item':
+            print('What is the value for ' + addingprop + '?')
+            uniteddict[addingprop] = match_wd_item('en')
+            if uniteddict[addingprop] == None:
+                break
+        else:
+            uniteddict[addingprop] = input('Enter the value!\n\n  ')
     return uniteddict
 
 
-def search_wd_items(searchstr, language):
+def search_wd_items(searchstr, language, entitytype='item'):
     """"Search for an item on Wikidata based on a given string"""
     searchstr.replace(' ','+')
     params = urllib.parse.urlencode({'search': searchstr,
                                      'action': 'wbsearchentities',
-                                     'language': language, 'format': 'json'})
+                                     'language': language,
+                                     'format': 'json',
+                                     'type': entitytype})
     f = urllib.request.urlopen('http://www.wikidata.org/w/api.php?' + params)
     f = f.read().decode('utf-8')
     g = json.loads(f)
@@ -77,7 +89,7 @@ def search_wd_items(searchstr, language):
     return possiblematches
 
 def match_wd_item(language, searchstr=None, mappingjsonfile=None,
-                  proposallist=None, inputstrlist=None):
+                  proposallist=None, inputstrlist=None, entitytype='item'):
     """Try to find a Wikidata item, e.g. by searching with a string
 
     The function gives the user the following input options to select an item:
@@ -125,7 +137,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             if searchstr in mapping:
                 response = mapping[searchstr]
                 break
-            possiblematches = search_wd_items(searchstr, language)
+            possiblematches = search_wd_items(searchstr, language, entitytype)
         ## Add text to question if a Wikidata search has yet taken place
             if len(possiblematches) == 0:
                 question = ('The search for "' + searchstr + '" has not found '
@@ -274,21 +286,25 @@ def artworkjson2qs(artworkjson):
     if 'commonscat' in artworkjson:
         outputstr += (ref + '\tP373\t"' + artworkjson['commonscat'] + '"\n')
     if 'P180' in artworkjson:
-        outputstr += (ref + '\tP180\t' + artworkjson['depicts'] + '\n')
+        outputstr += (ref + '\tP180\t' + artworkjson['P180'] + '\n')
     #TODO: non-unique properties such as P180 should be able to have >1 value
     return outputstr
 
 ## Try to write a file and ask to overwrite it if it yet exists
-def try_write_file(outputfile, output):
+def try_write_file(outputfile, output, overwrite=False):
     try:
         with open(outputfile, 'x') as f:
             f.write(output)
     except FileExistsError:
-        answer = input('The file "' + outputfile +
-                       '" exists yet. Press "y" if you want to overwrite it! ')
-        if answer == 'y':
+        if overwrite == False:
+            overwrite = input('The file "' + outputfile +
+            '" exists yet. Press "y" if you want to overwrite it! ')
+            if overwrite != 'y':
+                pass
+        else:
             with open(outputfile, 'w+') as f:
                 f.write(output)
+    return overwrite
 
 def process_single(inputdict):
         uniteddict = unite(inputdict)

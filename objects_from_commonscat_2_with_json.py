@@ -31,7 +31,7 @@ def catpages(catname):
     
     return simplepages
 
-def invnos_for_cat(catname):
+def invnos_for_cat(catname, writefiles=False):
     """Take the pages collected by catpages, let the user look for \
     corresponding inventory numbers and return a dictionary with the \
     pairs.
@@ -39,6 +39,9 @@ def invnos_for_cat(catname):
     pages = catpages(catname)
     augmenteddictlist = []
     qsstring = ''
+    overwritejson = False
+    overwritejsonplus = False
+    overwriteqs = False
     i = 0
     # Add inventory numbers
     while i < len(pages):
@@ -87,24 +90,11 @@ def invnos_for_cat(catname):
          #           else:
          #               pages[i]['notusedfiles'] = duplicates
                     # TODO: improve evtl
-                    print('i (eig neu): ', pages[i], '\nj (eig alt): ', pages[j])
+                    print('i (eig neu): ',pages[i],'\nj (eig alt): ',pages[j])
                     del pages[i]
-        # Simply add the inventory number and ask for other info
-        # TODO: Why is this functionality not in collect_data.py?
+        # Simply add the inventory number and pass info to collect_data.unite
         else:
             pages[i]['invno'] = answer
-#            # Add instanceOf, depicts etc. # TODO: better Commons parsing?
-#            ## instanceOf
-#            print('What is the object instance of?')
-#            pages[i]['instanceOf'] = collect_data.match_wd_item('en',
-#                mappingjsonfile='data/object_classes_mapping.json',
-#                proposallist=[{'id': 'Q3305213', 'text': 'painting'},
-#                              {'id': 'Q860861', 'text': 'sculpture'}])
-#            ## collection
-#            print('''What is the object's collection?''')
-#            pages[i]['collection'] = collect_data.match_wd_item('en',
-#                proposallist=[{'id': 'Q812285', 'text':
-#                               'Bavarian State Painting Collections'}])
 
             uniteddict = collect_data.unite(pages[i])
             augmenteddictlist.append(uniteddict)
@@ -112,12 +102,23 @@ def invnos_for_cat(catname):
 
             i += 1
 
-#        # TODO: GET COLLECTION SOMEWHERE!!!!!!!
-#        print('What does the object depict?') # TODO: other values here?
-#        BETTER INTEGRATE THIS ADDITION FUNCITONALITY INTO collect_data.unite!
+        # Write write the JSON, the augmented JSON and QuickStatements
+        # results to files
+        if writefiles == True:
+            filenametrunk = 'data/objects-' + catname
+            overwritejson = collect_data.try_write_file(filenametrunk +
+                '.json', json.dumps(pages, ensure_ascii=False, indent=4,
+                sort_keys=True), overwrite=overwritejson)
+            overwritejsonplus = collect_data.try_write_file(filenametrunk +
+                '_plus.json', json.dumps(augmenteddictlist,
+                ensure_ascii=False, indent=4, sort_keys=True),
+                overwrite=overwritejsonplus)
+            overwriteqs = collect_data.try_write_file(filenametrunk +
+                '_qs.txt', qsstring, overwrite=overwriteqs)
+
 
     return pages, augmenteddictlist, qsstring
-    # TODO: currently no difference between pages and augmenteddictlist
+    # TODO: currently no difference between pages and augmenteddictlist?
 
 if __name__ == "__main__":
     import argparse
@@ -125,19 +126,11 @@ if __name__ == "__main__":
     parser.add_argument('catname')
     args = parser.parse_args()
 
-    # Renew Wikidata items TODO: this does not work! why?
+    # Renew Wikidata items
     get_wd_bstgs.get_wd_bstgs()
 
-    # Fetch data from the Commons category and integrate it
-    dictlist, augmenteddictlist, qsstring = invnos_for_cat(args.catname)
+    # Fetch data from the Commons category, integrate it and write it to files
+    invnos_for_cat(args.catname, writefiles=True)
 
-    # Write write the JSON, the augmented JSON and QuickStatements
-    # results to files
-    filenametrunk = 'data/objects-' + args.catname
-    collect_data.try_write_file(filenametrunk + '.json', json.dumps(dictlist,
-        ensure_ascii=False, indent=4, sort_keys=True))
-    collect_data.try_write_file(filenametrunk + '_plus.json', json.dumps(
-        augmenteddictlist, ensure_ascii=False, indent=4, sort_keys=True))
-    collect_data.try_write_file(filenametrunk + '_qs.txt', qsstring)
 
 
