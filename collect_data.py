@@ -38,11 +38,29 @@ def unite(inputdict):
     else:
         print('No inventory number was given.')
 
-
-    ## add any data, for a start: single depicts: TODO: extend
-#    print('What does the object depict?')
-#    uniteddict['depicts'] = match_wd_item('en')
-
+    # Add instanceOf, depicts etc. # TODO: better Commons parsing?
+    ## instanceOf
+    print('What is the object instance of?')
+    uniteddict['instanceOf'] = match_wd_item('en',
+        mappingjsonfile='data/object_classes_mapping.json',
+        proposallist=[{'id': 'Q3305213', 'text': 'painting'},
+                      {'id': 'Q860861', 'text': 'sculpture'}])
+    ## collection
+    print('''What is the object's collection?''')
+    uniteddict['collection'] = match_wd_item('en',
+        proposallist=[{'id': 'Q812285', 'text':
+                       'Bavarian State Painting Collections'}])
+    ## add any data # TODO
+    while 1: # TODO: exit through exiting answer
+        print('Is there another property you want to add?')
+        addingprop = match_wd_item('en',
+            proposallist=[{'id': 'P180', 'text': 'depicts'}])
+        if addingprop == None:
+            break
+        print('What is the value for ' + addingprop + '?')
+        uniteddict[addingprop] = match_wd_item('en')
+        if uniteddict[addingprop] == None:
+            break
     return uniteddict
 
 
@@ -65,15 +83,15 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
     The function gives the user the following input options to select an item:
     - (number of one of the possible matches if a previous search has found \
     possible matches)        -> response -> map!
-    - WD-QID                 -> response -> map!
+    - Wikidata entity ID     -> response -> map!
     - (new) WD-search-string -> search_wd_items()
     - abort                  -> response is "[search-string]"
 
     * mappingjsonfile is used to use a mapping file for successful matches
     * proposallist is used to give a list of (for now max. 26) proposed \
       matches which might be confirmed by the user, each proposal has to be a \
-      dictionary holding the Wikidata QID in the "id" key and a description \
-      in the "text" key
+      dictionary holding the Wikidata entity ID in the "id" key and a \
+      description in the "text" key
     * inputstrlist is used to give a list of input strings for unit testing
     """
     inputstrno = 0 # begin with first item of inputstrlist
@@ -88,7 +106,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
     while 'response' not in locals():
         # Construct elementary question
         question = ('Enter one of the following:\n'
-                    '- the QID of the correct item,\n'
+                    '- the entity ID of the correct entity,\n'
                     '- a "string to search Wikidata for in double quotes" or\n'
                     '- anything else to abort!\n')
 	# Add the proposals to question if proposallist is given
@@ -99,8 +117,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                 proposaltext += (abc[i] + ' ' + proposallist[i]['text'] +
                                  ' (' + proposallist[i]['id'] + ')\n')
             question = proposaltext + question
-            question = question.replace('- the QID', '- the letter of the ' +
-                'correct proposed item,\n- the QID')
+            question = question.replace('- the enti', '- the letter of the ' +
+                'correct proposed entity,\n- the enti')
         # Process the optional search string if given
         if searchstr:
         ## Look in the mapping for the search string
@@ -113,8 +131,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                 question = ('The search for "' + searchstr + '" has not found '
                             'any possible matches.\n' + question)
             else:
-                question = question.replace('- the QID','- the number of the '
-                            'correct item,\n- the QID')
+                question = question.replace('- the enti','- the number of the '
+                            'correct entity,\n- the enti')
                 matchesstr = ('The search for "' + searchstr + '" has found ' +
                               str(len(possiblematches))+' possible matches:\n')
         ## Add a line for each possible match
@@ -134,7 +152,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                                    possiblematches[i]['id'] + ')\n')
                 question = matchesstr + question
         # Input prompt
-        if inputstrlist:
+        if inputstrlist: # for unit testing
             answer = inputstrlist[inputstrno]
             inputstrno += 1
         else:
@@ -150,7 +168,10 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
         # Process the user entered answer
         ## Abort if string empty
         if answer == '':
-            response = '[' + str(searchstr0) + ']'
+            if searchstr0:
+                response = '[' + str(searchstr0) + ']'
+            else:
+                response = None
         ## Proposal confirmed with "y"
         elif proposallist and answer in list(i for i in
                 abc[:(len(proposallist))]):
@@ -161,7 +182,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             newmatchedid = possiblematches[matchindex]['id']
             response = newmatchedid
         ## QID entered
-        elif (answer[0] == 'Q' and set(answer[1:] + '0123456789') ==
+        elif (answer[0] in 'PQ' and set(answer[1:] + '0123456789') ==
               {'0','1','2','3','4','5','6','7','8','9'}): # not using re
             newmatchedid = answer
             response = newmatchedid
@@ -170,7 +191,10 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             searchstr = answer[1:-1]
         ## Abort
         else:
-            response = '[' + str(searchstr0) + ']'
+            if searchstr0:
+                response = '[' + str(searchstr0) + ']'
+            else:
+                response = None
     # write newly matched ID to mapping file
     if 'newmatchedid' in locals() and searchstr0:
         mapping[searchstr0] = newmatchedid
@@ -191,6 +215,8 @@ class TestMatchWDItem(unittest.TestCase): # TODO!
 
 ## Convert the collection to QuickStatements format
 def artworkjson2qs(artworkjson):
+    artworkjson = {key:'[None]' if artworkjson[key] is None else
+                  artworkjson[key] for key in list(artworkjson.keys())}
     outputstr = ''
     # Add warning if the inventory number could not be found in the inventory
     commentOutStr = ''
@@ -247,7 +273,7 @@ def artworkjson2qs(artworkjson):
         outputstr += (ref + '\tP18\t"' + artworkjson['image'] + '"\n')
     if 'commonscat' in artworkjson:
         outputstr += (ref + '\tP373\t"' + artworkjson['commonscat'] + '"\n')
-    if 'depicts' in artworkjson:
+    if 'P180' in artworkjson:
         outputstr += (ref + '\tP180\t' + artworkjson['depicts'] + '\n')
     #TODO: non-unique properties such as P180 should be able to have >1 value
     return outputstr

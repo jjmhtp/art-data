@@ -93,18 +93,18 @@ def invnos_for_cat(catname):
         # TODO: Why is this functionality not in collect_data.py?
         else:
             pages[i]['invno'] = answer
-            # Add instanceOf, depicts etc. # TODO: better Commons parsing?
-            ## instanceOf
-            print('What is the object instance of?')
-            pages[i]['instanceOf'] = collect_data.match_wd_item('en',
-                mappingjsonfile='data/object_classes_mapping.json',
-                proposallist=[{'id': 'Q3305213', 'text': 'painting'},
-                              {'id': 'Q860861', 'text': 'sculpture'}])
-            ## collection
-            print('''What is the object's collection?''')
-            pages[i]['collection'] = collect_data.match_wd_item('en',
-                proposallist=[{'id': 'Q812285', 'text':
-                               'Bavarian State Painting Collections'}])
+#            # Add instanceOf, depicts etc. # TODO: better Commons parsing?
+#            ## instanceOf
+#            print('What is the object instance of?')
+#            pages[i]['instanceOf'] = collect_data.match_wd_item('en',
+#                mappingjsonfile='data/object_classes_mapping.json',
+#                proposallist=[{'id': 'Q3305213', 'text': 'painting'},
+#                              {'id': 'Q860861', 'text': 'sculpture'}])
+#            ## collection
+#            print('''What is the object's collection?''')
+#            pages[i]['collection'] = collect_data.match_wd_item('en',
+#                proposallist=[{'id': 'Q812285', 'text':
+#                               'Bavarian State Painting Collections'}])
 
             uniteddict = collect_data.unite(pages[i])
             augmenteddictlist.append(uniteddict)
