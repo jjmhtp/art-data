@@ -1,3 +1,12 @@
+
+# move through Commons files and cats
+* all files and cats under cat
+  -> need templates
+* all of those with Template:Artwork or Category:Template:artwork possible or Template:Category definition: Object
+  -> should get items on Wikidata
+* all of those on Wikidata which are not linked by one of the items with inventory number and image
+
+# old stuff
 - improve documentation
     - [ ] write function docstrings
 - convert_bstgs_inv.py

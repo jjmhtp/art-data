@@ -4,7 +4,10 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 import collect_data
+from collect_data import style
+from collect_data import sinput
 import get_wd_bstgs
+
 
 def catpages(catname):
     """Collect file and category pages from a Wikimedia Commons \
@@ -25,9 +28,9 @@ def catpages(catname):
         simplepages.append({'fulltitle': pages[i]['nstext'] + ':' +
                             pages[i]['title'].replace('_', ' ')})
         if pages[i]['nstext'] == 'File':
-            simplepages[i]['image'] = pages[i]['title'].replace('_', ' ')
+            simplepages[i]['P18'] = [pages[i]['title'].replace('_', ' ')]
         elif pages[i]['nstext'] == 'Category':
-            simplepages[i]['commonscat'] = pages[i]['title'].replace('_', ' ')
+            simplepages[i]['P373'] = [pages[i]['title'].replace('_', ' ')]
     
     return simplepages
 
@@ -50,8 +53,8 @@ def invnos_for_cat(catname, writefiles=False):
         url = 'https://commons.wikimedia.org/w/index.php?' + params
         f = urllib.request.urlopen(url)
         f = f.read().decode('utf-8')
-        print('\n', pages[i]['fulltitle'], '\n', f)
-        answer = input('Please insert the inventory number! (Or input "exit" '
+        print('\n', pages[i]['fulltitle'], '\n', style.source + f + style.end)
+        answer = sinput('Please insert the inventory number! (Or input "exit" '
                        'to exit or "skip" to delete the entry!\n')
         # Stop looking for inventory numbers
         if answer == 'exit':
@@ -68,11 +71,11 @@ def invnos_for_cat(catname, writefiles=False):
                     print('The following two pages belong to '
                         # TODO: Better category processing?
                         'the object with the inventory number ' + answer +
-                        ': \n1 ' + pages[j]['fulltitle'] + '\n2 ' + 
-                        pages[i]['fulltitle'])
+                        ': \n' + style.select + '1 ' + pages[j]['fulltitle'] +
+                        '\n2 ' + pages[i]['fulltitle'] + style.end)
                     selection = ''
                     while selection != '1' and selection != '2':
-                        selection = input('Please enter the number of the ' +
+                        selection = sinput('Please enter the number of the ' +
                         'preferred one!\n')
                     selection = int(selection) - 1
                     # TODO: print also URLs here!

@@ -3,7 +3,21 @@
 
 import json
 import urllib.request, urllib.parse, urllib.error
+import readline
 import unittest
+
+
+class style: # ansi text styling
+    source = '\033[92m' # bright green
+    select = '\033[93m' # bright yellow
+    inputting = '\033[4m' # underline
+    end = '\033[0m'
+def sinput(prompt):
+    """Styled input"""
+    s = input(prompt + style.inputting)
+    print(style.end, end='')
+    return s
+
 
 ## Read data from the BStGS inventory list and the Wikidata list of
 ## inventory numbers json files
@@ -104,7 +118,7 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             inputstrno += 1
         else:
             print(question)
-            answer = input('')
+            answer = sinput('')
             # The long question string breaks the ouput here on OS X otherwise
             print('')
         matchindex = -1
@@ -184,7 +198,7 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
             print('What is the value for ' + addingpropref + '?')
             value = match_wd_item('en', proposallist=valueproposallist)
         else:
-            value = input('Enter the value!\n\n')
+            value = sinput('Enter the value!\n\n')
         # Add statement if a value is given or adding is forced
         if value or forceadd == True:
             # Create property dictionary if not existing
@@ -213,6 +227,7 @@ def unite(inputdict):
             for artwork in bstgsinventory:
             # TODO: Find better solution instead of this double checking!
                 if inputdict['invno'] == artwork['invno']:
+                    print('BStGS inventory title: ' + artwork['title'])
                     uniteddict['creator'] = artwork['creator']
                     uniteddict['title'] = artwork['title']
                     uniteddict['sURL'] = artwork['sURL']
@@ -234,10 +249,14 @@ def unite(inputdict):
     uniteddict, abort = add_statement(uniteddict, addingpropid='P195',
         forceadd=True, valueproposallist=
             [{'id': 'Q812285', 'text': 'Bavarian State Painting Collections'}])
-    # Add arbitrary other statements
+    ## arbitrary other statements
     abort = False
     while not abort:
         uniteddict, abort = add_statement(uniteddict)
+    # Add a note
+    note = sinput('Enter a note or abort with "Enter"!\n')
+    if note:
+        uniteddict['note'] = note
 
     return uniteddict
 
@@ -293,12 +312,10 @@ def artworkjson2qs(artworkjson):
     # S1476 "Bestandsliste der Bayerischen Staatsgemäldesammlungen A-E"
     # TODO: S304 [string for page]: hyphen for ranges
         outputstr += '\n'
-    if 'image' in artworkjson:
-        outputstr += (ref + '\tP18\t"' + artworkjson['image'] + '"\n')
-    if 'commonscat' in artworkjson:
-        outputstr += (ref + '\tP373\t"' + artworkjson['commonscat'] + '"\n')
+    print(artworkjson) # TODO: testing
     for prop in artworkjson.keys():
-        if prop not in ['invno', 'creator', 'title', 'stime', 'sURL']:
+        if prop not in ['invno', 'invno not found in inventory', 'creator',
+                        'title', 'stime', 'sURL', 'fulltitle', 'note']:
             for value in artworkjson[prop]:
                 if not value:
                     value = '[' + str(value) + ']'
@@ -313,13 +330,13 @@ def try_write_file(outputfile, output, overwrite=False):
             f.write(output)
     except FileExistsError:
         if overwrite == False:
-            overwrite = input('The file "' + outputfile +
+            overwrite = sinput('The file "' + outputfile +
             '" exists yet. Press "y" if you want to overwrite it! ')
             if overwrite != 'y':
                 pass
-        else:
-            with open(outputfile, 'w+') as f:
-                f.write(output)
+            else:
+                with open(outputfile, 'w+') as f:
+                    f.write(output)
     return overwrite
 
 def process_single(inputdict):
