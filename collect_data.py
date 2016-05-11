@@ -40,7 +40,8 @@ def search_wd_items(searchstr, language, entitytype='item'):
     return possiblematches
 
 def match_wd_item(language, searchstr=None, mappingjsonfile=None,
-                  proposallist=None, inputstrlist=None, entitytype='item'):
+                  proposallist=None, inputstrlist=None, entitytype='item',
+                  givebackstrings=[], lastusedgroup=None):
     """Try to find a Wikidata item, e.g. by searching with a string
 
     The function gives the user the following input options to select an item:
@@ -64,22 +65,40 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
             mapping = json.load(readfile)
     except (TypeError, FileNotFoundError):
         mapping = {}
+    # Add the last used entities to the proposallist
+    # if lastusedgroup is given
+    # FIXME: Doubled proposals from last used and proposallist are not elegant!
+    if not proposallist:
+        proposallist = []
+    if lastusedgroup:
+        try:
+            with open('data/wd_last_used_entities.json', 'r') as readfile:
+                lastused = json.load(readfile)
+        except (FileNotFoundError):
+            lastused = {}
+        if lastusedgroup in lastused:
+            for i in range(min([len(lastused[lastusedgroup]), 5])):
+            # max 5 more proposals
+                proposallist.append({'text':
+                    lastused[lastusedgroup][i]['label'],
+                    'id': lastused[lastusedgroup][i]['id']})
     # Begin with matching
     while 'response' not in locals():
         # Construct elementary question
         question = ('Enter one of the following:\n'
-                    '- a "string to search Wikidata for in double quotes" or\n'
-                    '- anything else to abort!\n')
+                    '- a string to search Wikidata for or\n'
+                    '- "Enter" to abort!')
 	# Add the proposals to question if proposallist is given
         abc = 'abcdefghijklmnopqrstuvwxyz'
         if proposallist:
             proposaltext = 'The folling values are proposed:\n'
             for i in range(len(proposallist)):
-                proposaltext += (abc[i] + ' ' + proposallist[i]['text'] +
-                                 ' (' + proposallist[i]['id'] + ')\n')
+                proposaltext += (style.select + abc[i] + ' ' +
+                                 proposallist[i]['text'] + ' (' +
+                                 proposallist[i]['id'] + ')\n' + style.end)
             question = proposaltext + question
-            question = question.replace('- a "string', '- the letter of the ' +
-                'correct proposed entity,\n- a "string')
+            question = question.replace('- a string', '- the letter of the ' +
+                'correct proposed entity,\n- a string')
         # Process the optional search string if given
         if searchstr:
         ## Look in the mapping for the search string
@@ -92,8 +111,8 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                 question = ('The search for "' + searchstr + '" has not found '
                             'any possible matches.\n' + question)
             else:
-                question = question.replace('- a "string','- the number of the '
-                            'correct entity,\n- a "string')
+                question = question.replace('- a string','- the number of the '
+                            'correct entity,\n- a string')
                 matchesstr = ('The search for "' + searchstr + '" has found ' +
                               str(len(possiblematches))+' possible matches:\n')
         ## Add a line for each possible match
@@ -108,9 +127,9 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
                         description = '"' + description + '"'
                     else:
                         description = '[no description]'
-                    matchesstr += (str(i+1) + ' ' + label + ' – ' +
-                                   description + ' (' +
-                                   possiblematches[i]['id'] + ')\n')
+                    matchesstr += (style.select + str(i+1) + ' ' + label +
+                                   ' – ' + description + ' (' +
+                                   possiblematches[i]['id'] + ')\n' +style.end)
                 question = matchesstr + question
         # Input prompt
         if inputstrlist: # for unit testing
@@ -127,39 +146,49 @@ def match_wd_item(language, searchstr=None, mappingjsonfile=None,
         except ValueError:
             pass
         # Process the user entered answer
-        ## Abort if string empty
-        if answer == '':
+        ## Give the string back if it is in givebackstrings
+        if answer in givebackstrings:
+            response = answer
+        ## Abort if string is empty
+        elif answer == '':
             if searchstr0:
                 response = '[' + str(searchstr0) + ']'
             else:
                 response = None
-        ## Proposal confirmed with "y"
+        ## Proposal confirmed with letter
         elif proposallist and answer in list(i for i in
                 abc[:(len(proposallist))]):
             response = proposallist[abc.find(answer)]['id']
+            responselabel = proposallist[abc.find(answer)]['text']
         ## Number of possible match entered
         elif 'possiblematches' in locals() and matchindex in range(0,
                 len(possiblematches)):
             newmatchedid = possiblematches[matchindex]['id']
             response = newmatchedid
+            responselabel = possiblematches[matchindex]['label']
         ## New search string entered
-        elif answer[0] == answer[-1] == '"':
-            searchstr = answer[1:-1]
-        ## Abort
         else:
-            if searchstr0:
-                response = '[' + str(searchstr0) + ']'
-            else:
-                response = None
-    # write newly matched ID to mapping file
+            searchstr = answer
+    # Write matched ID to last used entities file
+    if 'responselabel' in locals() and lastusedgroup:
+        lastusedentity = {'label': responselabel, 'id': response}
+        if lastusedgroup not in lastused:
+            lastused[lastusedgroup] = []
+        lastused[lastusedgroup][0:0] = [lastusedentity]
+        if lastused[lastusedgroup].count(lastusedentity) > 1:
+            lastused[lastusedgroup].reverse()
+            del(lastused[lastusedgroup][
+                lastused[lastusedgroup].index(lastusedentity)])
+            lastused[lastusedgroup].reverse()
+        with open('data/wd_last_used_entities.json', 'w+') as writefile:
+            writefile.write(json.dumps(lastused, ensure_ascii=False,
+                            indent=4, sort_keys=True))
+    # Write newly matched ID to mapping file
     if 'newmatchedid' in locals() and searchstr0:
         mapping[searchstr0] = newmatchedid
-        try:
-            with open(mappingjsonfile, 'w+') as writefile:
-                writefile.write(json.dumps(mapping, ensure_ascii=False,
-                                indent=4, sort_keys=True))
-        except (TypeError):
-            pass
+        with open(mappingjsonfile, 'w+') as writefile:
+            writefile.write(json.dumps(mapping, ensure_ascii=False,
+                            indent=4, sort_keys=True))
     return response
 
 class TestMatchWDItem(unittest.TestCase): # TODO!
@@ -168,9 +197,36 @@ class TestMatchWDItem(unittest.TestCase): # TODO!
                        inputstrlist=['1']),'Q1161913')
 
 
+def get_wd_property_data(prop):
+    try:
+        with open('data/wd_props_datatypes.json', 'r') as readfile:
+            allpropsdata = json.load(readfile)
+    except (TypeError, FileNotFoundError):
+        allpropsdata = {}
+    if prop in allpropsdata:
+        propdata = allpropsdata[prop]
+    else:
+        rawpropdata = json.loads(urllib.request.urlopen(
+            'https://www.wikidata.org/wiki/Special:EntityData/' + prop +
+            '.json').read().decode('utf-8'))
+        label = (
+            rawpropdata['entities'][prop]['labels']['en']['value'])
+        datatype = (
+            rawpropdata['entities'][prop]['datatype'])
+        propdata = {'label': label, 'datatype': datatype}
+        allpropsdata[prop] = propdata
+        # Write newly fetched data to file
+        with open('data/wd_props_datatypes.json', 'w+') as writefile:
+            writefile.write(json.dumps(allpropsdata, ensure_ascii=False,
+                            indent=4, sort_keys=True))
+    return propdata
+
+
 def add_statement(itemdict, addingpropid=None, forceadd=False,
                   valueproposallist=None):
-    """Add a statement to a given dictionary for an item
+    """Add something to a given dictionary for an item
+
+    Labels, aliases, descriptions, notes and statements may be added.
     
     If the property is given and the datatype of the property is \
     wikibase-item, a list with proposals for the value coming from \
@@ -179,147 +235,213 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
     abort = False
     # Look for a property if none is given
     if not addingpropid:
-        print('Is there another property you want to add?')
+        print('Do you want to edit the item? Change a label with ".", an ' +
+              'alias with ",", a description with "+", add a note with "#" ' +
+              'or add a property with the following instructions!')
+        # FIXME: messy!
         addingpropid = match_wd_item('en', entitytype='property',
-            proposallist=[{'id': 'P180', 'text': 'depicts'}])
-    # If property is given look for a value
+            givebackstrings=['.', ',', '+', '#'],
+            lastusedgroup='props')
     if addingpropid != None:
-        addingpropdata = json.loads(urllib.request.urlopen(
-            'https://www.wikidata.org/wiki/Special:EntityData/' + addingpropid+
-            '.json').read().decode('utf-8'))
-        addingpropdatatype = (
-            addingpropdata['entities'][addingpropid]['datatype'])
-        addingproplabel = (
-            addingpropdata['entities'][addingpropid]['labels']['en']['value'])
-        addingpropref = '"' + addingproplabel + '" (' + addingpropid + ')'
-        print('The datatype of ' + addingpropref + ' is ' +
-              addingpropdatatype + '.')
-        if addingpropdatatype == 'wikibase-item':
-            print('What is the value for ' + addingpropref + '?')
-            value = match_wd_item('en', proposallist=valueproposallist)
+        # Change label
+        if addingpropid == '.':
+            language = sinput('Enter the language code for the label!\n')
+            label = sinput('Enter the label!\n')
+            itemdict['labels'][language] = label
+        # Change alias
+        elif addingpropid == ',':
+            language = sinput('Enter the language code for the alias!\n')
+            alias = sinput('Enter the alias!\n')
+            itemdict['aliases'][language] = alias
+        # Change description
+        elif addingpropid == '+':
+            language = sinput('Enter the language code for the description!\n')
+            description = sinput('Enter the description!\n')
+            itemdict['descriptions'][language] = description
+        # Add note
+        elif addingpropid == '#':
+            noteaddition = sinput('Enter the note!\n')
+            itemdict['notes'].append('# NOTE: ' + noteaddition)
+        # Add statement with given property
         else:
-            value = sinput('Enter the value!\n\n')
-        # Add statement if a value is given or adding is forced
-        if value or forceadd == True:
-            # Create property dictionary if not existing
-            if not itemdict.get(addingpropid):
-                itemdict[addingpropid] = []
-            # Add new statement to property dictionary
-            itemdict[addingpropid].append(value)
-    # If no property is given exit with abort=True
+            propdata = get_wd_property_data(addingpropid)
+            addingpropref = '"' + propdata['label'] + '" (' + addingpropid + ')'
+            print('The datatype of ' + addingpropref + ' is ' +
+                  propdata['datatype'] + '. ', end='')
+            if propdata['datatype'] == 'wikibase-item':
+                print('What is the value for ' + addingpropref + '? ', end='')
+                value = match_wd_item('en', proposallist=valueproposallist,
+                                      lastusedgroup=addingpropid)
+            else:
+                value = sinput('Enter the value!\n')
+            # Add statement if a value is given or adding is forced
+            if value or forceadd == True:
+                # Create property dictionary if not existing
+                if addingpropid not in itemdict['statements']:
+                    itemdict['statements'][addingpropid] = []
+                # Add new statement to property dictionary
+                itemdict['statements'][addingpropid].append({'value': value})
+    # If nothing to add is given exit with abort=True
     else:
         abort = True
     return itemdict, abort
 
+def process_bstgs_creator(inputcreator):
+    creator = {}
+    creator['value'] = match_wd_item('de', searchstr=inputcreator['value'],
+              mappingjsonfile='data/bstgs_wd_creator_mapping.json')
+    if 'qualifiers' in inputcreator:
+        creatorqualifierdict = {'Art des': ['P1777'],
+                                'Kopie nach': ['P1877'],
+                                'Nach': ['P1877'],
+                                'Nachahmer': ['P1777'],
+                                'Nachfolger': ['P1775'],
+                                'Schule': ['P1780'],
+                                'Umkreis': ['P1776'],
+                                'vermutlich': ['P1779'],
+                                'Werkstatt': ['P1774'],
+                                'zugeschrieben': ['P1773'],
+                                '?': ['P1779'],
+                                'Anonymer Meister seiner Werkstatt': ['P1774'],
+                                'Werkstatt?': ['ERROR NO MAPPING: Werkstatt?'],
+                                # FIXME: Wikidata ontology is not sufficient
+                                'Replik': ['P1877'],
+                                'Werkstattkopie': ['P1774', 'P1877']}
+        for qualifier in inputcreator['qualifiers']:
+            proplist = creatorqualifierdict[qualifier]
+            qualvalue = match_wd_item('de',
+                searchstr=inputcreator['qualifiers'][qualifier],
+                mappingjsonfile='data/bstgs_wd_creator_mapping.json')
+            creator['qualifiers'] = [{prop: qualvalue} for prop in proplist]
+    return creator
+
 def unite(inputdict):
     """Unite the data of Wikidata, the BStGS inventory list and given \
-    data for an artworkgroup""" # TODO: for now an artworkgroup(?)
+    data for an artworkgroup
+
+    Currently only the first inventory number (P217) in inputlist is \
+    processed.
+    """ # TODO: Handle artworkgroups: more P217 in inputlist and WD
+    # Initialize the united dictionary for the artwork
     uniteddict = inputdict
-    if 'invno' in inputdict:
+    uniteddict['labels'] = {}
+    uniteddict['aliases'] = {}
+    uniteddict['descriptions'] = {}
+    uniteddict['notes'] = []
+    # Match the dictionary against other sources
+    if 'P217' in inputdict['statements']:
         # Wikidata
         for item in items:
-            if inputdict['invno'] in item['invno']:
+            if inputdict['statements']['P217'][0]['value'] in item['invno']:
             # TODO: matches also groups atm
                 uniteddict['wdqid'] = ('Q' + str(item['wdqid']))
         # BStGS inventory list
-        if inputdict['invno'] in list(artwork['invno'] for artwork in
-                                      bstgsinventory):
+        if inputdict['statements']['P217'][0]['value'] in list(
+              artwork['invno'] for artwork in bstgsinventory):
             for artwork in bstgsinventory:
             # TODO: Find better solution instead of this double checking!
-                if inputdict['invno'] == artwork['invno']:
-                    print('BStGS inventory title: ' + artwork['title'])
-                    uniteddict['creator'] = artwork['creator']
-                    uniteddict['title'] = artwork['title']
-                    uniteddict['sURL'] = artwork['sURL']
-                    uniteddict['stime'] = artwork['stime']
+                if inputdict['statements']['P217'][0]['value'] == (
+                        artwork['invno']):
+                    print('BStGS inventory title: ' + style.source +
+                          artwork['title'] + style.end + 
+                          ', BStGS inventory creator: ' + style.source +
+                          str(artwork['creator']) + style.end)
+                    uniteddict['labels']['de'] = artwork['title']
+                    # Construct source
+                    sourcetimeqs = '+0000000' + artwork['stime'][:-7] + 'Z/13'
+                    source = [{
+                        'P854': artwork['sURL'],
+                        'P813': sourcetimeqs,
+                        'P123': 'Q812285',
+                        'P407': 'Q188'}]
+                    # The title (P1476), e.g. "Bestandsliste der
+                    # Bayerischen Staatsgemäldesammlungen A-E" and the
+                    # page (P304) as a string with a hyphen for a range
+                    # could theoretically be given here.
+                    uniteddict['statements']['P217'][0]['sources'] = source
+                    # P170
+                    creator = process_bstgs_creator(artwork['creator'])
+                    creator['sources'] = source
+                    if 'P170' not in uniteddict['statements']:
+                        uniteddict['statements']['P170'] = []
+                    uniteddict['statements']['P170'].append(creator)
+                    # P195
+                    if 'P195' not in uniteddict['statements']:
+                        uniteddict['statements']['P195'] = []
+                    uniteddict['statements']['P195'].append(
+                        {'value': 'Q812285', 'sources': source})
         else:
-            uniteddict['invno not found in inventory'] = True
+            uniteddict['notes'].append('# WARNING: The inventory number ' +
+                                       'was not found in the inventory!')
             print('No inventory entry found for inventory number: ',
-                  inputdict['invno'])
+                  inputdict['statements']['P217'][0]['value'])
     else:
         print('No inventory number was given.')
 
-    # Add P31, P195 and arbitrary other statments TODO: better Commons parsing?
+    # Add P31 and arbitrary other statments TODO: better Commons parsing?
     ## P31
     uniteddict, abort = add_statement(uniteddict, addingpropid='P31',
-        forceadd=True, valueproposallist=
-            [{'id': 'Q3305213', 'text': 'painting'},
-             {'id': 'Q860861', 'text': 'sculpture'}])
-    ## P195
-    uniteddict, abort = add_statement(uniteddict, addingpropid='P195',
-        forceadd=True, valueproposallist=
-            [{'id': 'Q812285', 'text': 'Bavarian State Painting Collections'}])
-    ## arbitrary other statements
+        forceadd=True)
+    ## arbitrary other labels, aliases, descriptions, notes, statements
     abort = False
     while not abort:
         uniteddict, abort = add_statement(uniteddict)
-    # Add a note
-    note = sinput('Enter a note or abort with "Enter"!\n')
-    if note:
-        uniteddict['note'] = note
 
     return uniteddict
 
+
+def construct_qsvalue(value, prop):
+    if not value:
+        value = '[' + str(value) + ']'
+    else:
+        if get_wd_property_data(prop)['datatype'] == 'wikibase-item':
+            pass
+        else:
+            value = '"' + value + '"'
+    return value
+    
 def artworkjson2qs(artworkjson):
     """Convert the collection to QuickStatements format"""
-    artworkjson = {key:'[None]' if artworkjson[key] is None else
-                  artworkjson[key] for key in list(artworkjson.keys())}
+    # Initialize
     outputstr = ''
-    # Add warning if the inventory number could not be found in the inventory
-    commentOutStr = ''
-    if 'invno not found in inventory' in artworkjson:
-        commentOutStr = '# '
-        outputstr = (commentOutStr + 'WARNING: The inventory number was not '
-                     'found in the inventory!\n' + outputstr)
-    # Prepare extension of existing and creation of new items
+    # Add notes
+    if 'notes' in artworkjson:
+        outputstr += ('\n'.join(artworkjson['notes']) + '\n')
+    # Add creation command and prepare reference to item for statements
     if 'wdqid' in artworkjson:
-        ref = commentOutStr + artworkjson['wdqid']
+        ref = artworkjson['wdqid']
     else:
-        outputstr += commentOutStr + 'CREATE\n'
-        ref = commentOutStr + 'LAST'
-    # Match creation data to Wikidata
-    if 'creator' in artworkjson:
-        creator = artworkjson['creator']['value']
-        creator = match_wd_item('de', searchstr=creator,
-                  mappingjsonfile='data/bstgs_wd_creator_mapping.json')
-        if 'qualifiers' in artworkjson['creator']:
-            creatorqualifierdict = {'Kopie nach': 'P1877',
-                                    'zugeschrieben': 'P1773'}
-            for key in creatorqualifierdict:
-                if key in artworkjson['creator'].get('qualifiers'):
-                    #TODO: output the string in () if it could not be mapped
-                    creatorinqualifier = artworkjson['creator']['qualifiers']\
-                                         [key]
-                    creatorinqualifier = match_wd_item('de',
-                        searchstr=creatorinqualifier,
-                        mappingjsonfile='data/bstgs_wd_creator_mapping.json')
-                    creator += ('	' + creatorqualifierdict[key] +
-                                '	' + creatorinqualifier)
-    # Add statement constructors
-    if 'title' in artworkjson:
-        outputstr += (ref + '\tLde\t"' + artworkjson['title'] + '"\n')
-    if 'creator' in artworkjson:
-        outputstr += (ref + '\tP170\t' + creator + '\n')
-    if 'invno' in artworkjson:
-        outputstr += (ref + '\tP217\t"' + artworkjson['invno'] +
-                  '"\tP195\tQ812285')
-        if 'sURL' in artworkjson: # there is no source if invno wasn't matched
-            outputstr += ('\tS854\t"' + artworkjson['sURL'])
-                  # FIXME: Multiple statements for one source do not work in
-		  # QuickStatements!
-                  # + '"\tS813\t"+0000000' + artworkjson['stime'][:-7] +
-                  # 'Z/13"\tS123\tQ812285\tS407\tQ188\n')
-    # S1476 "Bestandsliste der Bayerischen Staatsgemäldesammlungen A-E"
-    # TODO: S304 [string for page]: hyphen for ranges
-        outputstr += '\n'
-    print(artworkjson) # TODO: testing
-    for prop in artworkjson.keys():
-        if prop not in ['invno', 'invno not found in inventory', 'creator',
-                        'title', 'stime', 'sURL', 'fulltitle', 'note']:
-            for value in artworkjson[prop]:
-                if not value:
-                    value = '[' + str(value) + ']'
-                outputstr += (ref + '\t' + prop + '\t' + value + '\n')
+        outputstr += 'CREATE\n'
+        ref = 'LAST'
+    # Add labels, aliases and descriptions
+    for kind in ['labels','aliases','descriptions']:
+        for language in artworkjson[kind]:
+            outputstr += (ref + '\t' + kind[0].upper() + language + '\t"' +
+                          artworkjson[kind][language] + '"\n')
+    # Add statements
+    for prop in artworkjson['statements'].keys():
+        if prop not in ['fulltitle', 'notes', 'Lde']:
+            for statement in artworkjson['statements'][prop]:
+                # Add value
+                print(statement)
+                print('value: ', statement['value']) # TODO: just testing
+                outputstr += (ref + '\t' + prop + '\t' +
+                              construct_qsvalue(statement['value'], prop))
+                # Add qualifiers
+                if 'qualifiers' in statement:
+                    for qualifier in statement['qualifiers']:
+                        for qualprop in qualifier:
+                            outputstr += ('\t' + qualprop + '\t' +
+                                          construct_qsvalue(
+                                          qualifier[qualprop], qualprop))
+                # Add one source prop-value pair
+                # FIXME: Unfortunately QuickStatements is restricted here!
+                if 'sources' in statement:
+                    for source in statement['sources']:
+                        if 'P854' in source:
+                            outputstr += ('\tS854\t' +
+                                construct_qsvalue(source['P854'], 'P854'))
+                outputstr += '\n'
     return outputstr
 
 
@@ -383,7 +505,7 @@ if __name__ == "__main__":
     ## an inventory number
     inputinvno = args.invno
     if inputinvno:
-        process_single({'invno': inputinvno})
+        process_single({'statements':{'P217': [{'value': inputinvno}]}})
     ## a json dictionary
     inputjson = args.json
     if inputjson:
@@ -401,8 +523,7 @@ if __name__ == "__main__":
 
 
 # agenda
-# * process creation data before QuickStatements conversion(?)
+# * put BStGS stuff in own module!
 # * handle artwork groups: probably just print a warning!
-# * get the collection property (P195) from bstgs_inventory.json and get a source for P217 and P195
 # * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 

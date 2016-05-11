@@ -1,0 +1,48 @@
+{
+    "P180": [
+        {
+            "id": "Q90562",
+            "label": "Elsa Asenijeff"
+        }
+    ],
+    "P31": [
+        {
+            "id": "Q860861",
+            "label": "sculpture"
+        },
+        {
+            "id": "Q848330",
+            "label": "tondo"
+        },
+        {
+            "id": "Q3305213",
+            "label": "painting"
+        }
+    ],
+    "props": [
+        {
+            "id": "P571",
+            "label": "inception"
+        },
+        {
+            "id": "P180",
+            "label": "depicts"
+        },
+        {
+            "id": "P31",
+            "label": "instance of"
+        },
+        {
+            "id": "P170",
+            "label": "creator"
+        },
+        {
+            "id": "P793",
+            "label": "significant event"
+        },
+        {
+            "id": "P1257",
+            "label": "depicts Iconclass notation"
+        }
+    ]
+}

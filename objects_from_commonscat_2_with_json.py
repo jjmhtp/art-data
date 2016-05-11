@@ -27,10 +27,15 @@ def catpages(catname):
     for i in range(len(pages)):
         simplepages.append({'fulltitle': pages[i]['nstext'] + ':' +
                             pages[i]['title'].replace('_', ' ')})
+        simplepages[i]['statements'] = {}
         if pages[i]['nstext'] == 'File':
-            simplepages[i]['P18'] = [pages[i]['title'].replace('_', ' ')]
+            simplepages[i]['statements']['P18'][0] = [{}]
+            simplepages[i]['statements']['P18']['value'] = (
+                [pages[i]['title'].replace('_', ' ')])
         elif pages[i]['nstext'] == 'Category':
-            simplepages[i]['P373'] = [pages[i]['title'].replace('_', ' ')]
+            simplepages[i]['statements']['P373'] = [{}]
+            simplepages[i]['statements']['P373'][0]['value'] = (
+                [pages[i]['title'].replace('_', ' ')])
     
     return simplepages
 
@@ -54,8 +59,10 @@ def invnos_for_cat(catname, writefiles=False):
         f = urllib.request.urlopen(url)
         f = f.read().decode('utf-8')
         print('\n', pages[i]['fulltitle'], '\n', style.source + f + style.end)
-        answer = sinput('Please insert the inventory number! (Or input "exit" '
-                       'to exit or "skip" to delete the entry!\n')
+        answer = ''
+        while answer == '':
+            answer = sinput('Please insert the inventory number! (Or input ' +
+                            '"exit" to exit or "skip" to delete the entry!\n')
         # Stop looking for inventory numbers
         if answer == 'exit':
             break
@@ -64,26 +71,24 @@ def invnos_for_cat(catname, writefiles=False):
             del pages[i]
             print('The page has been skipped.')
         # Select from different images for one object
-        elif 'invno' in pages[i-1] and answer in (page['invno'] for page in
-              pages[:i]):
+        elif 'P217' in pages[i-1]['statements'] and answer in (
+              page['statements']['P217'] for page in pages[:i]):
             for j in range(i):
-                if answer == pages[j]['invno']:
+                if answer == pages[j]['statements']['P217']:
                     print('The following two pages belong to '
-                        # TODO: Better category processing?
                         'the object with the inventory number ' + answer +
                         ': \n' + style.select + '1 ' + pages[j]['fulltitle'] +
                         '\n2 ' + pages[i]['fulltitle'] + style.end)
                     selection = ''
                     while selection != '1' and selection != '2':
                         selection = sinput('Please enter the number of the ' +
-                        'preferred one!\n')
+                                           'preferred one!\n')
                     selection = int(selection) - 1
-                    # TODO: print also URLs here!
                     duplicates = [pages[j],pages[i]]
                     print('duplicates: ', duplicates)
-                    commoninvno = pages[j]['invno']
+                    commoninvno = pages[j]['statements']['P217']
                     pages[j] = duplicates[selection]
-                    pages[j]['invno'] = commoninvno
+                    pages[j]['statements']['P217'] = commoninvno
                     # TODO: simplify perhaps
          #           betterdup = duplicates.pop(selection)
          #           pages[i]['nstext'] = betterdup['nstext']
@@ -97,7 +102,7 @@ def invnos_for_cat(catname, writefiles=False):
                     del pages[i]
         # Simply add the inventory number and pass info to collect_data.unite
         else:
-            pages[i]['invno'] = answer
+            pages[i]['statements']['P217'] = [{'value': answer}]
 
             uniteddict = collect_data.unite(pages[i])
             augmenteddictlist.append(uniteddict)
@@ -119,9 +124,7 @@ def invnos_for_cat(catname, writefiles=False):
             overwriteqs = collect_data.try_write_file(filenametrunk +
                 '_qs.txt', qsstring, overwrite=overwriteqs)
 
-
     return pages, augmenteddictlist, qsstring
-    # TODO: currently no difference between pages and augmenteddictlist?
 
 if __name__ == "__main__":
     import argparse

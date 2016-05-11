@@ -1,0 +1,50 @@
+{
+    "P1257": {
+        "datatype": "string",
+        "label": "depicts Iconclass notation"
+    },
+    "P170": {
+        "datatype": "wikibase-item",
+        "label": "creator"
+    },
+    "P1774": {
+        "datatype": "wikibase-item",
+        "label": "workshop of"
+    },
+    "P180": {
+        "datatype": "wikibase-item",
+        "label": "depicts"
+    },
+    "P1877": {
+        "datatype": "wikibase-item",
+        "label": "after a work by"
+    },
+    "P195": {
+        "datatype": "wikibase-item",
+        "label": "collection"
+    },
+    "P217": {
+        "datatype": "string",
+        "label": "inventory number"
+    },
+    "P31": {
+        "datatype": "wikibase-item",
+        "label": "instance of"
+    },
+    "P571": {
+        "datatype": "time",
+        "label": "inception"
+    },
+    "P793": {
+        "datatype": "wikibase-item",
+        "label": "significant event"
+    },
+    "P854": {
+        "datatype": "url",
+        "label": "reference URL"
+    },
+    "prop": {
+        "datatype": "wikibase-item",
+        "label": "collection"
+    }
+}
