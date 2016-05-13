@@ -29,13 +29,13 @@ def catpages(catname):
                             pages[i]['title'].replace('_', ' ')})
         simplepages[i]['statements'] = {}
         if pages[i]['nstext'] == 'File':
-            simplepages[i]['statements']['P18'][0] = [{}]
-            simplepages[i]['statements']['P18']['value'] = (
-                [pages[i]['title'].replace('_', ' ')])
+            simplepages[i]['statements']['P18'] = [{}]
+            simplepages[i]['statements']['P18'][0]['value'] = (
+                pages[i]['title'].replace('_', ' '))
         elif pages[i]['nstext'] == 'Category':
             simplepages[i]['statements']['P373'] = [{}]
             simplepages[i]['statements']['P373'][0]['value'] = (
-                [pages[i]['title'].replace('_', ' ')])
+                pages[i]['title'].replace('_', ' '))
     
     return simplepages
 

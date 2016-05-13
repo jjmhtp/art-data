@@ -1,154 +1,562 @@
 [
     {
-        "collection": "Q812285",
-        "image": "Adolf von Hildebrand, Konrad Fiedler.jpg",
-        "instanceOf": "Q3305213"
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:Max Klinger, Elsa Asenijeff.jpg",
+        "labels": {
+            "de": "Elsa Asenijeff"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q44252"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Max Klinger, Elsa Asenijeff.jpg"
+                }
+            ],
+            "P180": [
+                {
+                    "value": "Q90562"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "B 739"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q860861"
+                }
+            ],
+            "P571": [
+                {
+                    "value": "+1900-01-01T00:00:00Z/8"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Psyche by Wolf von Hoyer"
+        "fulltitle": "File:Adolf von Hildebrand, Konrad Fiedler.jpg",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Adolf von Hildebrand, Konrad Fiedler.jpg"
+                }
+            ]
+        }
     },
     {
-        "image": "Bertel Thorvaldsen Kopf eines Kriegers ca. 1812-18-1.jpg"
+        "fulltitle": "Category:Psyche by Wolf von Hoyer",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Psyche by Wolf von Hoyer"
+                }
+            ]
+        }
     },
     {
-        "image": "Auguste Rodin Eva 1881-1.jpg"
+        "fulltitle": "File:Bertel Thorvaldsen Kopf eines Kriegers ca. 1812-18-1.jpg",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Bertel Thorvaldsen Kopf eines Kriegers ca. 1812-18-1.jpg"
+                }
+            ]
+        }
     },
     {
-        "image": "Auguste Rodin Kauernde 1880-82-1.jpg"
+        "fulltitle": "File:Auguste Rodin Eva 1881-1.jpg",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Auguste Rodin Eva 1881-1.jpg"
+                }
+            ]
+        }
     },
     {
-        "image": "Adolf von Hildebrand Philoktet 1886-1.jpg"
+        "fulltitle": "File:Auguste Rodin Kauernde 1880-82-1.jpg",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Auguste Rodin Kauernde 1880-82-1.jpg"
+                }
+            ]
+        }
     },
     {
-        "image": "Batch Mattes 20130310 NP (18).JPG"
+        "fulltitle": "File:Adolf von Hildebrand Philoktet 1886-1.jpg",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Adolf von Hildebrand Philoktet 1886-1.jpg"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Night (Thorvaldsen)"
+        "fulltitle": "File:Batch Mattes 20130310 NP (18).JPG",
+        "statements": {
+            "P18": [
+                {
+                    "value": "Batch Mattes 20130310 NP (18).JPG"
+                }
+            ]
+        }
     },
     {
-        "image": "Antonio Canova - Paris statue - BStGS Inv. No. WAF B 4.jpg"
+        "fulltitle": "Category:Flora by Albert-Ernest Carrier-Belleuse",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Flora by Albert-Ernest Carrier-Belleuse"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Flora by Albert-Ernest Carrier-Belleuse"
+        "fulltitle": "Category:Der Hüttenarbeiter by Constantin Meunier",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Hüttenarbeiter by Constantin Meunier"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Hüttenarbeiter by Constantin Meunier"
+        "fulltitle": "Category:Der Netzträger (Adolf von Hildebrand)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Netzträger (Adolf von Hildebrand)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Netzträger (Adolf von Hildebrand)"
+        "fulltitle": "Category:Amazonenjagd (Adolf von Hildebrand)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Amazonenjagd (Adolf von Hildebrand)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Amazonenjagd (Adolf von Hildebrand)"
+        "fulltitle": "Category:Perseus und Andromeda (Julius Troschel)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Perseus und Andromeda (Julius Troschel)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Perseus und Andromeda (Julius Troschel)"
+        "fulltitle": "Category:Zethus und Amphion (Julius Troschel)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Zethus und Amphion (Julius Troschel)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Zethus und Amphion (Julius Troschel)"
+        "fulltitle": "Category:Der Bildhauer Josef Floßmann (Adolf von Hildebrand)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Bildhauer Josef Floßmann (Adolf von Hildebrand)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Bildhauer Josef Floßmann (Adolf von Hildebrand)"
+        "fulltitle": "Category:Marie Louise Fiedler (Adolf von Hildebrand)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Marie Louise Fiedler (Adolf von Hildebrand)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Marie Louise Fiedler (Adolf von Hildebrand)"
+        "fulltitle": "Category:Schlafendes Mädchen (Julius Troschel, Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Schlafendes Mädchen (Julius Troschel, Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Schlafendes Mädchen (Julius Troschel, Neue Pinakothek)"
+        "fulltitle": "Category:Die Sandalenbinderin (Rudolf Schadow)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Die Sandalenbinderin (Rudolf Schadow)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Die Sandalenbinderin (Rudolf Schadow)"
+        "fulltitle": "Category:Bellerophon und Pegasus (Julius Troschel)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Bellerophon und Pegasus (Julius Troschel)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Bellerophon und Pegasus (Julius Troschel)"
+        "fulltitle": "Category:Tod des Adonis (Julius Troschel)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Tod des Adonis (Julius Troschel)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Tod des Adonis (Julius Troschel)"
+        "fulltitle": "Category:Amor und die Muse (Konrad Eberhard)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Amor und die Muse (Konrad Eberhard)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Amor und die Muse (Konrad Eberhard)"
+        "fulltitle": "Category:Fürstin Elisa Bacchiochi (Lorenzo Bartolini)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Fürstin Elisa Bacchiochi (Lorenzo Bartolini)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Fürstin Elisa Bacchiochi (Lorenzo Bartolini)"
+        "fulltitle": "Category:Angelika Kauffmann (Peter Kaufmann)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Angelika Kauffmann (Peter Kaufmann)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Angelika Kauffmann (Peter Kaufmann)"
+        "fulltitle": "Category:Der Mann mit der zerbrochenen Nase (Auguste Rodin)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Mann mit der zerbrochenen Nase (Auguste Rodin)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Mann mit der zerbrochenen Nase (Auguste Rodin)"
+        "fulltitle": "Category:Das eherne Zeitalter (Auguste Rodin)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Das eherne Zeitalter (Auguste Rodin)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Das eherne Zeitalter (Auguste Rodin)"
+        "fulltitle": "Category:Helene von Nostitz by Auguste Rodin (Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Helene von Nostitz by Auguste Rodin (Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Helene von Nostitz by Auguste Rodin (Neue Pinakothek)"
+        "fulltitle": "Category:Der Maler Auguste Renoir (Aristide Maillol)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Maler Auguste Renoir (Aristide Maillol)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Maler Auguste Renoir (Aristide Maillol)"
+        "fulltitle": "Category:Der Radrennfahrer (Aristide Maillol)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Radrennfahrer (Aristide Maillol)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Radrennfahrer (Aristide Maillol)"
+        "fulltitle": "Category:Flora (Aristide Maillol)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Flora (Aristide Maillol)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Flora (Aristide Maillol)"
+        "fulltitle": "Category:Venus au collier (Aristide Maillol)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Venus au collier (Aristide Maillol)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Venus au collier (Aristide Maillol)"
+        "fulltitle": "Category:Venus mit dem Apfel (Bertel Thorvaldsen)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Venus mit dem Apfel (Bertel Thorvaldsen)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Venus mit dem Apfel (Bertel Thorvaldsen)"
+        "fulltitle": "Category:Adonis (Bertel Thorvaldsen)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Adonis (Bertel Thorvaldsen)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Adonis (Bertel Thorvaldsen)"
+        "fulltitle": "Category:Der Tag (Bertel Thorvaldsen)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Tag (Bertel Thorvaldsen)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Tag (Bertel Thorvaldsen)"
+        "fulltitle": "Category:Venus, Mars und Vulcan (Bertel Thorvaldsen)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Venus, Mars und Vulcan (Bertel Thorvaldsen)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Venus, Mars und Vulcan (Bertel Thorvaldsen)"
+        "fulltitle": "Category:Amor auf dem wilden Panther reitend (Ernst Rietschel)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Amor auf dem wilden Panther reitend (Ernst Rietschel)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Amor auf dem wilden Panther reitend (Ernst Rietschel)"
+        "fulltitle": "Category:Napoleon Bonaparte (Giacomo Spalla)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Napoleon Bonaparte (Giacomo Spalla)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Napoleon Bonaparte (Giacomo Spalla)"
+        "fulltitle": "Category:August Wilhelm Iffland (Johann Gottfried Schadow)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "August Wilhelm Iffland (Johann Gottfried Schadow)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "August Wilhelm Iffland (Johann Gottfried Schadow)"
+        "fulltitle": "Category:Bauer (Aimé-Jules Dalou)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Bauer (Aimé-Jules Dalou)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Bauer (Aimé-Jules Dalou)"
+        "fulltitle": "Category:Venus und Amor (Reinhold Begas)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Venus und Amor (Reinhold Begas)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Venus und Amor (Reinhold Begas)"
+        "fulltitle": "Category:Vittoria Caldoni (Rudolf Schadow)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Vittoria Caldoni (Rudolf Schadow)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Vittoria Caldoni (Rudolf Schadow)"
+        "fulltitle": "Category:Der Wasserverkäufer (Vincenzo Gemito, Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Der Wasserverkäufer (Vincenzo Gemito, Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Der Wasserverkäufer (Vincenzo Gemito, Neue Pinakothek)"
+        "fulltitle": "Category:Paris by Antonio Canova (Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Paris by Antonio Canova (Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Paris by Antonio Canova (Neue Pinakothek)"
+        "fulltitle": "Category:Bust of Paris by Antonio Canova (Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Bust of Paris by Antonio Canova (Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Bust of Paris by Antonio Canova (Neue Pinakothek)"
+        "fulltitle": "Category:Jacques Francquaert (George Minne)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Jacques Francquaert (George Minne)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Jacques Francquaert (George Minne)"
+        "fulltitle": "Category:Zwei Knaben in einem Boot (George Minne)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Zwei Knaben in einem Boot (George Minne)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Zwei Knaben in einem Boot (George Minne)"
+        "fulltitle": "Category:Amazone (Louis Tuaillon, Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Amazone (Louis Tuaillon, Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Amazone (Louis Tuaillon, Neue Pinakothek)"
+        "fulltitle": "Category:Die Frierende (Jean-Baptiste Carpeaux)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Die Frierende (Jean-Baptiste Carpeaux)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Die Frierende (Jean-Baptiste Carpeaux)"
+        "fulltitle": "Category:Ratapoil (Honoré Daumier, Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Ratapoil (Honoré Daumier, Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Ratapoil (Honoré Daumier, Neue Pinakothek)"
+        "fulltitle": "Category:Crouching Woman by Auguste Rodin (Neue Pinakothek)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Crouching Woman by Auguste Rodin (Neue Pinakothek)"
+                }
+            ]
+        }
     },
     {
-        "commonscat": "Crouching Woman by Auguste Rodin (Neue Pinakothek)"
+        "fulltitle": "Category:Night (Thorvaldsen, Munich)",
+        "statements": {
+            "P373": [
+                {
+                    "value": "Night (Thorvaldsen, Munich)"
+                }
+            ]
+        }
     }
 ]

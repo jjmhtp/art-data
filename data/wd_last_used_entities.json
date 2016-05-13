@@ -1,4 +1,10 @@
 {
+    "P170": [
+        {
+            "id": "Q7294",
+            "label": "Johannes Brahms"
+        }
+    ],
     "P180": [
         {
             "id": "Q90562",
@@ -11,15 +17,29 @@
             "label": "sculpture"
         },
         {
-            "id": "Q848330",
-            "label": "tondo"
-        },
-        {
             "id": "Q3305213",
             "label": "painting"
+        },
+        {
+            "id": "Q848330",
+            "label": "tondo"
+        }
+    ],
+    "P793": [
+        {
+            "id": "Q760089",
+            "label": "commission"
         }
     ],
     "props": [
+        {
+            "id": "P1114",
+            "label": "quantity"
+        },
+        {
+            "id": "P625",
+            "label": "coordinate location"
+        },
         {
             "id": "P571",
             "label": "inception"
@@ -29,16 +49,16 @@
             "label": "depicts"
         },
         {
-            "id": "P31",
-            "label": "instance of"
+            "id": "P793",
+            "label": "significant event"
         },
         {
             "id": "P170",
             "label": "creator"
         },
         {
-            "id": "P793",
-            "label": "significant event"
+            "id": "P31",
+            "label": "instance of"
         },
         {
             "id": "P1257",

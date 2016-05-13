@@ -394,7 +394,8 @@ def construct_qsvalue(value, prop):
     if not value:
         value = '[' + str(value) + ']'
     else:
-        if get_wd_property_data(prop)['datatype'] == 'wikibase-item':
+        if get_wd_property_data(prop)['datatype'] in ['wikibase-item', 'time',
+              'globe-coordinate', 'quantity']:
             pass
         else:
             value = '"' + value + '"'
@@ -423,8 +424,6 @@ def artworkjson2qs(artworkjson):
         if prop not in ['fulltitle', 'notes', 'Lde']:
             for statement in artworkjson['statements'][prop]:
                 # Add value
-                print(statement)
-                print('value: ', statement['value']) # TODO: just testing
                 outputstr += (ref + '\t' + prop + '\t' +
                               construct_qsvalue(statement['value'], prop))
                 # Add qualifiers
@@ -436,6 +435,7 @@ def artworkjson2qs(artworkjson):
                                           qualifier[qualprop], qualprop))
                 # Add one source prop-value pair
                 # FIXME: Unfortunately QuickStatements is restricted here!
+                # Use pywikibot
                 if 'sources' in statement:
                     for source in statement['sources']:
                         if 'P854' in source:

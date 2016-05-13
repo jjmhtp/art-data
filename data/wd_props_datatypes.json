@@ -1,4 +1,8 @@
 {
+    "P1114": {
+        "datatype": "quantity",
+        "label": "quantity"
+    },
     "P1257": {
         "datatype": "string",
         "label": "depicts Iconclass notation"
@@ -10,6 +14,10 @@
     "P1774": {
         "datatype": "wikibase-item",
         "label": "workshop of"
+    },
+    "P18": {
+        "datatype": "commonsMedia",
+        "label": "image"
     },
     "P180": {
         "datatype": "wikibase-item",
@@ -34,6 +42,10 @@
     "P571": {
         "datatype": "time",
         "label": "inception"
+    },
+    "P625": {
+        "datatype": "globe-coordinate",
+        "label": "coordinate location"
     },
     "P793": {
         "datatype": "wikibase-item",
