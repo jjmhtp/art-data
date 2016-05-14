@@ -1,3 +1,6 @@
+* refactoring for BStGS independence
+* Template:Artwork parsing
+* use pywikibot
 
 # move through Commons files and cats
 * all files and cats under cat
@@ -19,10 +22,6 @@
 - [ ] get input data from Wikimedia Commons:
     - [ ] add inv. nos. to Commons file descriptions or rather collect it in a csv file
         - [ ] [https://commons.wikimedia.org/wiki/Category:Sculptures_in_the_Neue_Pinakothek](c:Category:Sculptures in the Neue Pinakothek) should be a good begin
-- for QuickStatements composition:
-    - P1877: after a work by
-    - P1773: attributed to
-    - Q4233718: anonymous
 - collection of inconsistencies in the BStGS inventory PDF files:
     - creator: "Honthorst-Nachahmer"
     - 'Olaf Gulbransson' sometimes not inverted

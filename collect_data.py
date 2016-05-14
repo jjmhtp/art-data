@@ -242,6 +242,7 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
         addingpropid = match_wd_item('en', entitytype='property',
             givebackstrings=['.', ',', '+', '#'],
             lastusedgroup='props')
+    # Ask for a value and save the value to the property
     if addingpropid != None:
         # Change label
         if addingpropid == '.':
@@ -346,6 +347,7 @@ def unite(inputdict):
                           artwork['title'] + style.end + 
                           ', BStGS inventory creator: ' + style.source +
                           str(artwork['creator']) + style.end)
+                    uniteddict['statements']['P217'][0]['qualifiers'] = [{'P195': 'Q812285'}]
                     uniteddict['labels']['de'] = artwork['title']
                     # Construct source
                     sourcetimeqs = '+0000000' + artwork['stime'][:-7] + 'Z/13'
@@ -454,11 +456,11 @@ def try_write_file(outputfile, output, overwrite=False):
         if overwrite == False:
             overwrite = sinput('The file "' + outputfile +
             '" exists yet. Press "y" if you want to overwrite it! ')
-            if overwrite != 'y':
-                pass
-            else:
-                with open(outputfile, 'w+') as f:
-                    f.write(output)
+        if overwrite != 'y':
+            pass
+        else:
+            with open(outputfile, 'w+') as f:
+                f.write(output)
     return overwrite
 
 def process_single(inputdict):
@@ -524,6 +526,7 @@ if __name__ == "__main__":
 
 # agenda
 # * put BStGS stuff in own module!
+# * add qualifiers and sources support to add_statement
 # * handle artwork groups: probably just print a warning!
 # * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 

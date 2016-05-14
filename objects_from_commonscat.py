@@ -60,7 +60,7 @@ def invnos_for_cat(catname, writefiles=False):
         f = f.read().decode('utf-8')
         print('\n', pages[i]['fulltitle'], '\n', style.source + f + style.end)
         answer = ''
-        while answer == '':
+        while answer == '': # TODO: use collect_data.add_statement here!
             answer = sinput('Please insert the inventory number! (Or input ' +
                             '"exit" to exit or "skip" to delete the entry!\n')
         # Stop looking for inventory numbers
@@ -70,11 +70,11 @@ def invnos_for_cat(catname, writefiles=False):
         elif answer == 'skip':
             del pages[i]
             print('The page has been skipped.')
-        # Select from different images for one object
+        # Select from different pages for one object
         elif 'P217' in pages[i-1]['statements'] and answer in (
-              page['statements']['P217'] for page in pages[:i]):
+              page['statements']['P217']['value'] for page in pages[:i]):
             for j in range(i):
-                if answer == pages[j]['statements']['P217']:
+                if answer == pages[j]['statements']['P217']['value']:
                     print('The following two pages belong to '
                         'the object with the inventory number ' + answer +
                         ': \n' + style.select + '1 ' + pages[j]['fulltitle'] +
