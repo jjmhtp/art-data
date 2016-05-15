@@ -222,6 +222,50 @@ def get_wd_property_data(prop):
     return propdata
 
 
+def add_value(addingprop, valueproposallist=None, lastusedgroup=None):
+    """Find a value for a statement, qualifier or source"""
+    # TODO: not stable, integrate into Statement()?
+    propdata = get_wd_property_data(addingprop)
+    addingpropref = '"' + propdata['label'] + '" (' + addingprop + ')'
+    print('The datatype of ' + addingpropref + ' is ' +
+          propdata['datatype'] + '. ', end='')
+    if propdata['datatype'] == 'wikibase-item':
+        print('What is the value for ' + addingpropref + '? ', end='')
+        value = match_wd_item('en', proposallist=valueproposallist,
+                              lastusedgroup=lastusedgroup)
+    else:
+        value = sinput('Enter the value!\n')
+    return value
+
+class Statement():
+    def __init__(self, prop=None, value=None):
+        self.prop = prop
+        self.value = value
+        self.quals = {}
+        self.srcs = []
+    # better add value instead of predifining it! TODO
+    def add_value(self):
+        pass
+    def add_qual(self):
+        qualprop = match_wd_item('en', entitytype='property',
+            lastusedgroup='qualprops')
+        qualvalue = add_value(qualprop, lastusedgroup=qualprop)
+        self.quals[qualprop]= qualvalue
+    def add_src(self): # TODO
+        self.srcs.append([])
+    def add_src_stmt(self): # TODO
+        srcprop = match_wd_item('en', entitytype='property',
+            lastusedgroup='srcprops')
+    def make_dict(self):
+        self.stmtdict = {'value': value}
+        if self.quals:
+            qualdict = {}
+            for qualprop in self.quals:
+                qualdict[qualprop] = self.quals[qualprop]
+            self.stmtdict['quals'] = qualdict
+        # srcs the same TODO
+        return self.stmtdict
+
 def add_statement(itemdict, addingpropid=None, forceadd=False,
                   valueproposallist=None):
     """Add something to a given dictionary for an item
@@ -232,6 +276,8 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
     wikibase-item, a list with proposals for the value coming from \
     match_wd_item may be given.
     """
+    # The variable names in this function could be better, more like:
+    # addingstmtprop, addingstmtvalue, addingqual…, addingsrc… TODO
     abort = False
     # Look for a property if none is given
     if not addingpropid:
@@ -241,7 +287,7 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
         # FIXME: messy!
         addingpropid = match_wd_item('en', entitytype='property',
             givebackstrings=['.', ',', '+', '#'],
-            lastusedgroup='props')
+            lastusedgroup='stmtprops')
     # Ask for a value and save the value to the property
     if addingpropid != None:
         # Change label
@@ -264,7 +310,7 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
             noteaddition = sinput('Enter the note!\n')
             itemdict['notes'].append('# NOTE: ' + noteaddition)
         # Add statement with given property
-        else:
+        else: # TODO: use add_value
             propdata = get_wd_property_data(addingpropid)
             addingpropref = '"' + propdata['label'] + '" (' + addingpropid + ')'
             print('The datatype of ' + addingpropref + ' is ' +
@@ -281,7 +327,20 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
                 if addingpropid not in itemdict['statements']:
                     itemdict['statements'][addingpropid] = []
                 # Add new statement to property dictionary
+                stmt = Statement(addingpropid, value)
                 itemdict['statements'][addingpropid].append({'value': value})
+                # Adding qualifiers or sources # TODO
+                qualsrcadding = 1
+                while qualsrcadding:
+                    pass
+                    qualsrcadding = sinput('Type "q" if you want to add a qualifier or ' +
+                        '"s" if you want to add a statement to the source or "ss" if ' +
+                        'you want to add a new source!\n')
+                    if qualsrcadding == 'q':
+                        stmt.add_qual()
+                    elif qualsrcadding == 's':
+                stmtdict = stmt.make_dict()
+                print('stmtdict: ', stmtdict)
     # If nothing to add is given exit with abort=True
     else:
         abort = True
@@ -525,8 +584,13 @@ if __name__ == "__main__":
 
 
 # agenda
+# * introduce more relative variables which reduces bugs for incorrect referencing!!!
+# * introduce abbreviations stmt, prop, qual, src. value stays
 # * put BStGS stuff in own module!
+#     * and remove --invno option instead of input with collection like:
+#       {'P217': ['quals': {'P195': '[collection]'}, 'value': '[invno]']}
 # * add qualifiers and sources support to add_statement
 # * handle artwork groups: probably just print a warning!
 # * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
+
 
