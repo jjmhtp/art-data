@@ -69,6 +69,10 @@ def invnos_for_cat(catname, writefiles=False):
         elif answer == 'skip':
             del pages[i]
             print('The page has been skipped.')
+        # Mark the page as not applicable # TODO: new hidden functionality
+        elif answer == 'na':
+            newcompletedpage = '"' + pages[i]['fulltitle'] + '", "na"\n'
+            del pages[i]
         # Select from different pages for one object
         elif 'P217' in pages[i-1]['statements'] and answer in (
               page['statements']['P217'][0]['value'] for page in pages[:i]):
@@ -123,6 +127,9 @@ def invnos_for_cat(catname, writefiles=False):
                 overwrite=overwritejsonplus)
             overwriteqs = collect_data.try_write_file(filenametrunk +
                 '_qs.txt', qsstring, overwrite=overwriteqs)
+            with open('data/commons_completed_pages.csv', 'a') as f:
+                f.write(newcompletedpage)
+
 
     return pages, augmenteddictlist, qsstring
 
