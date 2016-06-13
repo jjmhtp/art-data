@@ -16,8 +16,7 @@ def catpages(catname):
     """
     params = urllib.parse.urlencode({'language': 'commons', 'project':
         'wikimedia', 'categories': catname, 'ns[6]': '1', 'ns[14]': '1',
-        'ext_image_data': '0', 'file_usage_data': '0', 'format': 'json',
-	'doit': '1'})
+        'format': 'json', 'doit': '1'})
     url = ('https://petscan.wmflabs.org/?' + params)
     f = urllib.request.urlopen(url)
 
@@ -72,7 +71,8 @@ def invnos_for_cat(catname, writefiles=False):
             print('The page has been skipped.')
         # Select from different pages for one object
         elif 'P217' in pages[i-1]['statements'] and answer in (
-              page['statements']['P217']['value'] for page in pages[:i]):
+              page['statements']['P217'][0]['value'] for page in pages[:i]):
+              # FIXME: using just the first P217 statement
             for j in range(i):
                 if answer == pages[j]['statements']['P217']['value']:
                     print('The following two pages belong to '

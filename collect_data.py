@@ -257,7 +257,7 @@ class Statement():
         srcprop = match_wd_item('en', entitytype='property',
             lastusedgroup='srcprops')
     def make_dict(self):
-        self.stmtdict = {'value': value}
+        self.stmtdict = {'value': self.value}
         if self.quals:
             qualdict = {}
             for qualprop in self.quals:
@@ -330,17 +330,18 @@ def add_statement(itemdict, addingpropid=None, forceadd=False,
                 stmt = Statement(addingpropid, value)
                 itemdict['statements'][addingpropid].append({'value': value})
                 # Adding qualifiers or sources # TODO
-                qualsrcadding = 1
-                while qualsrcadding:
-                    pass
-                    qualsrcadding = sinput('Type "q" if you want to add a qualifier or ' +
-                        '"s" if you want to add a statement to the source or "ss" if ' +
-                        'you want to add a new source!\n')
-                    if qualsrcadding == 'q':
-                        stmt.add_qual()
-                    elif qualsrcadding == 's':
-                stmtdict = stmt.make_dict()
-                print('stmtdict: ', stmtdict)
+#                qualsrcadding = 1
+#                while qualsrcadding:
+#                    pass
+#                    qualsrcadding = sinput('Type "q" if you want to add a qualifier or ' +
+#                        '"s" if you want to add a statement to the source or "ss" if ' +
+#                        'you want to add a new source!\n')
+#                    if qualsrcadding == 'q':
+#                        stmt.add_qual()
+#                    elif qualsrcadding == 's':
+#                        pass
+#                stmtdict = stmt.make_dict()
+#                print('stmtdict: ', stmtdict)
     # If nothing to add is given exit with abort=True
     else:
         abort = True
@@ -587,10 +588,10 @@ if __name__ == "__main__":
 # * introduce more relative variables which reduces bugs for incorrect referencing!!!
 # * introduce abbreviations stmt, prop, qual, src. value stays
 # * put BStGS stuff in own module!
+#     * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 #     * and remove --invno option instead of input with collection like:
 #       {'P217': ['quals': {'P195': '[collection]'}, 'value': '[invno]']}
 # * add qualifiers and sources support to add_statement
 # * handle artwork groups: probably just print a warning!
-# * perhaps rewrite to match from arbitrary sources and with other things than invno perhaps
 
 

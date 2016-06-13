@@ -1,0 +1,98 @@
+
+Q11770765	Lde	"Die gerupfte Pute"
+Q11770765	P31	Q3305213
+Q11770765	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q11770765	P217	"8575"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q11770765	P18	"Francisco de Goya y Lucientes 092.jpg"
+Q11770765	P170	Q5432	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+
+
+Q5824977	Lde	"Entkleidung Christi (El Espolio)"
+Q5824977	P31	Q3305213
+Q5824977	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q5824977	P217	"8573"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q5824977	P18	"El Greco 023.jpg"
+Q5824977	P170	Q301	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+
+
+Q3633626	Lde	"Die Pastetenesser"
+Q3633626	P31	Q3305213
+Q3633626	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q3633626	P217	"487"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q3633626	P18	"Bartolomé Esteban Perez Murillo 013.jpg"
+Q3633626	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+
+
+Q11824926	Lde	"Doña Maria Teresa da Vallabriga"
+Q11824926	P31	Q3305213
+Q11824926	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q11824926	P217	"HUW 2"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q11824926	P18	"M.Teresa Vallabriga.jpg"
+Q11824926	P170	Q5432	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+Q11824926	P180	Q761871
+
+
+Q9395954	Lde	"Der hl. Thomas von Villanueva heilt einen Lahmen"
+Q9395954	P31	Q3305213
+Q9395954	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q9395954	P217	"52"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q9395954	P18	"Bartolomé Esteban Perez Murillo - St. Thomas of Villanueva Distributing Alms - WGA16363.jpg"
+Q9395954	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q9395954	P180	Q2166628
+
+
+CREATE
+LAST	Lde	"Häusliche Toilette"
+LAST	P31	Q3305213
+LAST	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	P217	"489"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	P18	"Bartolomé Esteban Perez Murillo - The Toilette - WGA16393.jpg"
+LAST	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+
+
+Q3399402	Lde	"Junger spanischer Edelmann"
+Q3399402	P31	Q3305213
+Q3399402	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+Q3399402	P373	"Young Man by by Diego Velázquez (Alte Pinakothek)"
+Q3399402	P18	"Diego Velázquez - Young Man - WGA24374.jpg"
+Q3399402	P170	Q297	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+Q3399402	P217	"518"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+
+
+Q16674796	Lde	"Der hl. Franziskus in Ekstase"
+Q16674796	P31	Q3305213
+Q16674796	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+Q16674796	P373	"Francis of Assisi by Zurbaran (Alte Pinakothek)"
+Q16674796	P18	"Francisco de Zurbarán - St Francis - WGA26075.jpg"
+Q16674796	P170	Q209615	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+Q16674796	P217	"504"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+
+
+Q2450139	Lde	"Trauben- und Melonenesser"
+Q2450139	P31	Q3305213
+Q2450139	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q2450139	P373	"Boys Eating Grapes and Melon by Murillo"
+Q2450139	P18	"Bartolomé Esteban Perez Murillo - Trauben- und Melonenesser.jpg"
+Q2450139	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q2450139	P217	"605"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+
+
+CREATE
+LAST	Len	"Young Boys Playing Dice"
+LAST	Lde	"Bettelknaben beim Würfelspiel"
+LAST	P31	Q3305213
+LAST	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	P373	"Young Boys Playing Dice by Murillo"
+LAST	P18	"Bartolomé Esteban Perez Murillo 010.jpg"
+LAST	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	P217	"597"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+
+
+Q11772156	Lde	"Die kleine Obsthändlerin"
+Q11772156	P31	Q3305213
+Q11772156	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q11772156	P373	"The Little Fruit Seller by Murillo"
+Q11772156	P18	"Murillo - Vendedores de fruta.jpg"
+Q11772156	P170	Q192062	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+Q11772156	P217	"497"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+

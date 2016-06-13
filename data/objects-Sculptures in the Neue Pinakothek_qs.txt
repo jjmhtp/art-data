@@ -1,11 +1,12 @@
-
+# NOTE: USELESS P1114 QUANTITY
 CREATE
-LAST	Lde	"Elsa Asenijeff"
-LAST	P571	"+1900-01-01T00:00:00Z/8"
-LAST	P217	"B 739"	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
-LAST	P18	"Max Klinger, Elsa Asenijeff.jpg"
-LAST	P180	Q90562
-LAST	P170	Q44252	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	Lde	"Der Kunsthistoriker und Mäzen Conrad Fiedler"
+LAST	Len	"Konrad Fiedler"
 LAST	P31	Q860861
-LAST	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+LAST	P1114	XXXXXXX
+LAST	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+LAST	P170	Q364808	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+LAST	P180	Q65764
+LAST	P18	"Adolf von Hildebrand, Konrad Fiedler.jpg"
+LAST	P217	"B 295"	P195	Q812285	S854	"http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
 

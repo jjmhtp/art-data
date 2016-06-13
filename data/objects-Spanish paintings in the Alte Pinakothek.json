@@ -1,0 +1,762 @@
+[
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:Francisco de Goya y Lucientes 092.jpg",
+        "labels": {
+            "de": "Die gerupfte Pute"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q5432"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Francisco de Goya y Lucientes 092.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "8575"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        },
+        "wdqid": "Q11770765"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:El Greco 023.jpg",
+        "labels": {
+            "de": "Entkleidung Christi (El Espolio)"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q301"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "El Greco 023.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "8573"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        },
+        "wdqid": "Q5824977"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:Bartolomé Esteban Perez Murillo 013.jpg",
+        "labels": {
+            "de": "Die Pastetenesser"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Bartolomé Esteban Perez Murillo 013.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "487"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        },
+        "wdqid": "Q3633626"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:M.Teresa Vallabriga.jpg",
+        "labels": {
+            "de": "Doña Maria Teresa da Vallabriga"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q5432"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "M.Teresa Vallabriga.jpg"
+                }
+            ],
+            "P180": [
+                {
+                    "value": "Q761871"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
+                        }
+                    ],
+                    "value": "HUW 2"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        },
+        "wdqid": "Q11824926"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:Bartolomé Esteban Perez Murillo - St. Thomas of Villanueva Distributing Alms - WGA16363.jpg",
+        "labels": {
+            "de": "Der hl. Thomas von Villanueva heilt einen Lahmen"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Bartolomé Esteban Perez Murillo - St. Thomas of Villanueva Distributing Alms - WGA16363.jpg"
+                }
+            ],
+            "P180": [
+                {
+                    "value": "Q2166628"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "52"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        },
+        "wdqid": "Q9395954"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "File:Bartolomé Esteban Perez Murillo - The Toilette - WGA16393.jpg",
+        "labels": {
+            "de": "Häusliche Toilette"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Bartolomé Esteban Perez Murillo - The Toilette - WGA16393.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "489"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ]
+        }
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "Category:Young Man by by Diego Velázquez (Alte Pinakothek)",
+        "labels": {
+            "de": "Junger spanischer Edelmann"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "Q297"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Diego Velázquez - Young Man - WGA24374.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "518"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ],
+            "P373": [
+                {
+                    "value": "Young Man by by Diego Velázquez (Alte Pinakothek)"
+                }
+            ]
+        },
+        "wdqid": "Q3399402"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "Category:Francis of Assisi by Zurbaran (Alte Pinakothek)",
+        "labels": {
+            "de": "Der hl. Franziskus in Ekstase"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "Q209615"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Francisco de Zurbarán - St Francis - WGA26075.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:31Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_S-Z(2).pdf"
+                        }
+                    ],
+                    "value": "504"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ],
+            "P373": [
+                {
+                    "value": "Francis of Assisi by Zurbaran (Alte Pinakothek)"
+                }
+            ]
+        },
+        "wdqid": "Q16674796"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "Category:Boys Eating Grapes and Melon by Murillo",
+        "labels": {
+            "de": "Trauben- und Melonenesser"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Bartolomé Esteban Perez Murillo - Trauben- und Melonenesser.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "605"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ],
+            "P373": [
+                {
+                    "value": "Boys Eating Grapes and Melon by Murillo"
+                }
+            ]
+        },
+        "wdqid": "Q2450139"
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "Category:Young Boys Playing Dice by Murillo",
+        "labels": {
+            "de": "Bettelknaben beim Würfelspiel",
+            "en": "Young Boys Playing Dice"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Bartolomé Esteban Perez Murillo 010.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "597"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ],
+            "P373": [
+                {
+                    "value": "Young Boys Playing Dice by Murillo"
+                }
+            ]
+        }
+    },
+    {
+        "aliases": {},
+        "descriptions": {},
+        "fulltitle": "Category:The Little Fruit Seller by Murillo",
+        "labels": {
+            "de": "Die kleine Obsthändlerin"
+        },
+        "notes": [],
+        "statements": {
+            "P170": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q192062"
+                }
+            ],
+            "P18": [
+                {
+                    "value": "Murillo - Vendedores de fruta.jpg"
+                }
+            ],
+            "P195": [
+                {
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "Q812285"
+                }
+            ],
+            "P217": [
+                {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "P123": "Q812285",
+                            "P407": "Q188",
+                            "P813": "+00000002015-07-28T19:28:27Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                        }
+                    ],
+                    "value": "497"
+                }
+            ],
+            "P31": [
+                {
+                    "value": "Q3305213"
+                }
+            ],
+            "P373": [
+                {
+                    "value": "The Little Fruit Seller by Murillo"
+                }
+            ]
+        },
+        "wdqid": "Q11772156"
+    }
+]

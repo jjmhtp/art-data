@@ -1,4 +1,10 @@
 {
+    "P143": [
+        {
+            "id": "Q565",
+            "label": "Wikimedia Commons"
+        }
+    ],
     "P170": [
         {
             "id": "Q7294",
@@ -7,18 +13,54 @@
     ],
     "P180": [
         {
+            "id": "Q2166628",
+            "label": "Thomas of Villanova"
+        },
+        {
+            "id": "Q761871",
+            "label": "María Teresa de Vallabriga y Rozas"
+        },
+        {
+            "id": "Q158256",
+            "label": "Isabella Clara Eugenia"
+        },
+        {
+            "id": "Q65764",
+            "label": "Konrad Fiedler"
+        },
+        {
+            "id": "Q1250916",
+            "label": "warrior"
+        },
+        {
+            "id": "Q843382",
+            "label": "Psyche"
+        },
+        {
+            "id": "Q7304",
+            "label": "Gustav Mahler"
+        },
+        {
+            "id": "Q212827",
+            "label": "Philoctetes"
+        },
+        {
+            "id": "Q830183",
+            "label": "Eve"
+        },
+        {
             "id": "Q90562",
             "label": "Elsa Asenijeff"
         }
     ],
     "P31": [
         {
-            "id": "Q860861",
-            "label": "sculpture"
-        },
-        {
             "id": "Q3305213",
             "label": "painting"
+        },
+        {
+            "id": "Q860861",
+            "label": "sculpture"
         },
         {
             "id": "Q848330",
@@ -31,22 +73,36 @@
             "label": "commission"
         }
     ],
-    "props": [
+    "qualprops": [
+        {
+            "id": "P143",
+            "label": "imported from"
+        }
+    ],
+    "stmtprops": [
+        {
+            "id": "P18",
+            "label": "image"
+        },
+        {
+            "id": "P180",
+            "label": "depicts"
+        },
+        {
+            "id": "P373",
+            "label": "Commons category"
+        },
         {
             "id": "P1114",
             "label": "quantity"
-        },
-        {
-            "id": "P625",
-            "label": "coordinate location"
         },
         {
             "id": "P571",
             "label": "inception"
         },
         {
-            "id": "P180",
-            "label": "depicts"
+            "id": "P625",
+            "label": "coordinate location"
         },
         {
             "id": "P793",

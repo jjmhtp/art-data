@@ -2,33 +2,41 @@
     {
         "aliases": {},
         "descriptions": {},
-        "fulltitle": "File:Max Klinger, Elsa Asenijeff.jpg",
+        "fulltitle": "File:Adolf von Hildebrand, Konrad Fiedler.jpg",
         "labels": {
-            "de": "Elsa Asenijeff"
+            "de": "Der Kunsthistoriker und Mäzen Conrad Fiedler",
+            "en": "Konrad Fiedler"
         },
-        "notes": [],
+        "notes": [
+            "# NOTE: USELESS P1114 QUANTITY"
+        ],
         "statements": {
+            "P1114": [
+                {
+                    "value": "XXXXXXX"
+                }
+            ],
             "P170": [
                 {
                     "sources": [
                         {
                             "P123": "Q812285",
                             "P407": "Q188",
-                            "P813": "+00000002015-07-28T19:28:27Z/13",
-                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
                         }
                     ],
-                    "value": "Q44252"
+                    "value": "Q364808"
                 }
             ],
             "P18": [
                 {
-                    "value": "Max Klinger, Elsa Asenijeff.jpg"
+                    "value": "Adolf von Hildebrand, Konrad Fiedler.jpg"
                 }
             ],
             "P180": [
                 {
-                    "value": "Q90562"
+                    "value": "Q65764"
                 }
             ],
             "P195": [
@@ -37,8 +45,8 @@
                         {
                             "P123": "Q812285",
                             "P407": "Q188",
-                            "P813": "+00000002015-07-28T19:28:27Z/13",
-                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
                         }
                     ],
                     "value": "Q812285"
@@ -46,25 +54,25 @@
             ],
             "P217": [
                 {
+                    "qualifiers": [
+                        {
+                            "P195": "Q812285"
+                        }
+                    ],
                     "sources": [
                         {
                             "P123": "Q812285",
                             "P407": "Q188",
-                            "P813": "+00000002015-07-28T19:28:27Z/13",
-                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_K-R(2).pdf"
+                            "P813": "+00000002015-07-28T19:28:24Z/13",
+                            "P854": "http://www.pinakothek.de/sites/default/files/files/BStGS_F-J(2).pdf"
                         }
                     ],
-                    "value": "B 739"
+                    "value": "B 295"
                 }
             ],
             "P31": [
                 {
                     "value": "Q860861"
-                }
-            ],
-            "P571": [
-                {
-                    "value": "+1900-01-01T00:00:00Z/8"
                 }
             ]
         }

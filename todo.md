@@ -2,6 +2,11 @@
 * Template:Artwork parsing
 * use pywikibot
 
+# new completeness approach
+* track new pages in Commons BStGS cat system through Petscan with using page with static list
+* make use of PSID in commons_blabla_.py possible
+
+
 # move through Commons files and cats
 * all files and cats under cat
   -> need templates

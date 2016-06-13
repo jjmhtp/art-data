@@ -7,6 +7,10 @@
         "datatype": "string",
         "label": "depicts Iconclass notation"
     },
+    "P143": {
+        "datatype": "wikibase-item",
+        "label": "imported from"
+    },
     "P170": {
         "datatype": "wikibase-item",
         "label": "creator"
@@ -38,6 +42,10 @@
     "P31": {
         "datatype": "wikibase-item",
         "label": "instance of"
+    },
+    "P373": {
+        "datatype": "string",
+        "label": "Commons category"
     },
     "P571": {
         "datatype": "time",
